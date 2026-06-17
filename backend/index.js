@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.send("AI Powerlifting Coach Backend Running!");
@@ -26,6 +26,30 @@ app.post("/api/session", (req, res) => {
     res.json({
         message: "Session received successfully!",
         receivedData: req.body
+    });
+});
+
+app.get("/api/session/:id", (req, res) => {
+    const sessionId = req.params.id;
+
+    res.json({
+        message: "Session retrieved successfully!",
+        sessionId: sessionId
+    });
+});
+
+app.get("/api/search", (req, res) => {
+    const exercise = req.query.exercise;
+
+    if (!exercise) {
+        return res.status(400).json({
+            error: "Exercise query parameter is required"
+        });
+    }
+
+    res.json({
+        message: "Search completed!",
+        exercise: exercise
     });
 });
 
