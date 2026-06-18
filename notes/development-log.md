@@ -212,3 +212,34 @@ Current API Endpoints:
 * GET /api/search
 
 Repository status clean and synchronized with GitHub.
+
+# Day 7
+
+## Features Added
+
+- Added in-memory session storage using JavaScript arrays
+- Updated POST /api/session to save workout sessions
+- Added GET /api/sessions endpoint to return all stored sessions
+- Updated GET /api/session/:id to return a specific session
+- Added validation for invalid session IDs
+- Implemented 404 responses for missing sessions
+
+## Testing
+
+Successfully tested:
+
+POST /api/session
+GET /api/sessions
+GET /api/session/0
+GET /api/session/1
+GET /api/session/99
+
+## Concepts Learned
+
+- Arrays
+- push()
+- Route parameters
+- parseInt()
+- Array indexing
+- 404 error handling
+- REST API resource retrieval
