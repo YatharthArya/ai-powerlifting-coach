@@ -6,6 +6,8 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
+let sessions = [];
+
 app.get("/", (req, res) => {
     res.send("AI Powerlifting Coach Backend Running!");
 });
@@ -20,21 +22,41 @@ app.get("/api/status", (req, res) => {
 });
 
 app.post("/api/session", (req, res) => {
-    console.log("Received session data:");
-    console.log(req.body);
+    const session = req.body;
+
+    sessions.push(session);
+
+    console.log("Current Sessions:");
+    console.log(sessions);
 
     res.json({
-        message: "Session received successfully!",
-        receivedData: req.body
+        message: "Session saved successfully!",
+        totalSessions: sessions.length,
+        savedSession: session
+    });
+});
+
+app.get("/api/sessions", (req, res) => {
+    res.json({
+        totalSessions: sessions.length,
+        sessions: sessions
     });
 });
 
 app.get("/api/session/:id", (req, res) => {
-    const sessionId = req.params.id;
+    const sessionId = parseInt(req.params.id);
+
+    const session = sessions[sessionId];
+
+    if (!session) {
+        return res.status(404).json({
+            error: "Session not found"
+        });
+    }
 
     res.json({
-        message: "Session retrieved successfully!",
-        sessionId: sessionId
+        sessionId: sessionId,
+        session: session
     });
 });
 
