@@ -60,6 +60,41 @@ app.get("/api/session/:id", (req, res) => {
     });
 });
 
+app.put("/api/session/:id", (req, res) => {
+    const sessionId = parseInt(req.params.id);
+
+    if (!sessions[sessionId]) {
+        return res.status(404).json({
+            error: "Session not found"
+        });
+    }
+
+    sessions[sessionId] = req.body;
+
+    res.json({
+        message: "Session updated successfully!",
+        updatedSession: sessions[sessionId]
+    });
+});
+
+app.delete("/api/session/:id", (req, res) => {
+    const sessionId = parseInt(req.params.id);
+
+    const session = sessions[sessionId];
+
+    if (!session) {
+        return res.status(404).json({
+            error: "Session not found"
+        });
+    }
+
+    sessions.splice(sessionId, 1);
+
+    res.json({
+        message: "Session deleted successfully!"
+    });
+});
+
 app.get("/api/search", (req, res) => {
     const exercise = req.query.exercise;
 
