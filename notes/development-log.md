@@ -287,4 +287,82 @@ GET /api/session/99
 
 ```javascript
 sessions[sessionId] = req.body;
+```
+
+# Day 9
+
+## Features Added
+
+- Added dotenv package for environment variable management
+- Created `.env` file for application configuration
+- Configured application name using environment variables
+- Added request counting middleware
+- Added request logging middleware
+- Implemented API usage monitoring through `/api/stats`
+- Updated application version to 0.0.4
+- Protected sensitive configuration files using `.gitignore`
+
+## Learning Outcomes
+
+### Environment Variables
+- Learned how to install and configure dotenv
+- Understood why sensitive information should not be hardcoded
+- Learned how to access environment variables using `process.env`
+- Implemented application configuration through `.env`
+
+### Middleware
+- Learned Express middleware execution flow
+- Understood the role of the `next()` function
+- Implemented custom middleware for request counting
+- Implemented custom middleware for request logging
+
+### API Monitoring
+- Tracked total API requests during runtime
+- Created a dedicated statistics endpoint
+- Learned how middleware can be used for monitoring and analytics
+
+## Routes Tested
+
+### GET /api/status
+Returned application status, version, and application name from environment variables.
+
+### GET /api/stats
+Returned total API requests processed by the server.
+
+### Existing CRUD Routes Verification
+- GET /api/sessions
+- GET /api/session/:id
+- POST /api/session
+- PUT /api/session/:id
+- DELETE /api/session/:id
+- GET /api/search?exercise=value
+
+All routes continued functioning correctly after middleware integration.
+
+## Challenges Faced
+
+### Environment Variable Setup
+- Learned proper dotenv installation and configuration
+- Verified environment variables loaded successfully during server startup
+
+### Middleware Order
+- Understood that middleware executes in the order it is registered
+- Verified request counter increments before route execution
+
+### Request Tracking Validation
+- Confirmed browser requests, including favicon requests, are also counted
+- Observed real-time request monitoring through terminal logs
+
+## Result
+
+Successfully implemented environment-based configuration and middleware-based request monitoring.
+
+Backend now supports:
+- Environment variable configuration
+- Request counting
+- Request logging
+- API usage statistics
+- Protected configuration management
+
+Application version upgraded to **0.0.4** and all existing CRUD functionality remains operational.
 
