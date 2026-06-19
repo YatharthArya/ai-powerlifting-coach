@@ -1,12 +1,32 @@
+require("dotenv").config();
+
 const express = require("express");
 
 const app = express();
 
-app.use(express.json());
-
 const PORT = process.env.PORT || 3000;
 
 let sessions = [];
+let requestCount = 0;
+
+app.use(express.json());
+
+app.use((req, res, next) => {
+    requestCount++;
+
+    console.log("Total Requests:", requestCount);
+
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log("----------");
+    console.log("Method:", req.method);
+    console.log("URL:", req.url);
+    console.log("Time:", new Date().toLocaleString());
+
+    next();
+});
 
 app.get("/", (req, res) => {
     res.send("AI Powerlifting Coach Backend Running!");
@@ -16,8 +36,14 @@ app.get("/", (req, res) => {
 app.get("/api/status", (req, res) => {
     res.json({
         status: "online",
-        application: "AI Powerlifting Coach",
-        version: "0.0.3"
+        application: process.env.APP_NAME,
+        version: "0.0.4"
+    });
+});
+
+app.get("/api/stats", (req, res) => {
+    res.json({
+        totalRequests: requestCount
     });
 });
 
