@@ -243,3 +243,48 @@ GET /api/session/99
 - Array indexing
 - 404 error handling
 - REST API resource retrieval
+
+
+# Day 8 Development Log
+
+## Features Added
+
+- Added PUT /api/session/:id endpoint for updating existing sessions
+- Added DELETE /api/session/:id endpoint for removing sessions
+- Added validation to prevent updates on non-existent sessions
+- Added validation to prevent deletion of non-existent sessions
+- Implemented session replacement using array indexing
+- Implemented session removal using splice()
+
+## Testing Performed
+
+### Update Endpoint Testing
+
+- Created workout sessions using POST /api/session
+- Updated session 0 using PUT /api/session/0
+- Verified updated values through GET /api/session/0
+- Confirmed updated data persisted in the sessions array
+
+### Delete Endpoint Testing
+
+- Deleted session 0 using DELETE /api/session/0
+- Verified successful deletion response
+- Checked GET /api/sessions to confirm session removal
+- Verified session count decreased correctly
+
+### Error Handling Testing
+
+- Requested invalid session IDs
+- Verified 404 responses for missing sessions
+- Confirmed API returned appropriate error messages
+
+## Concepts Learned
+
+### PUT Requests
+
+- Used PUT requests to update existing resources
+- Replaced session objects using array indexing
+
+```javascript
+sessions[sessionId] = req.body;
+
