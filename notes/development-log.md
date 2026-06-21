@@ -366,3 +366,168 @@ Backend now supports:
 
 Application version upgraded to **0.0.4** and all existing CRUD functionality remains operational.
 
+# Day 10
+
+## Features Added
+
+- Created database folder for persistent storage
+- Added sessions.json database file
+- Implemented file-based session loading during server startup
+- Added saveSessions() helper function
+- Implemented automatic file updates for POST operations
+- Implemented automatic file updates for PUT operations
+- Implemented automatic file updates for DELETE operations
+- Added persistent storage support using Node.js File System module (fs)
+
+## File System Integration
+
+### Reading Data
+
+Loaded existing sessions from sessions.json during application startup.
+
+```javascript
+let sessions = JSON.parse(
+    fs.readFileSync("../database/sessions.json", "utf8")
+);
+```
+
+Purpose:
+- Read stored session data from file
+- Convert JSON data into JavaScript objects
+- Load existing sessions automatically when the server starts
+
+### Writing Data
+
+Saved updated session data back to sessions.json whenever sessions are created, updated, or deleted.
+
+```javascript
+function saveSessions() {
+    fs.writeFileSync(
+        "../database/sessions.json",
+        JSON.stringify(sessions, null, 2)
+    );
+}
+```
+
+Purpose:
+- Convert JavaScript array into JSON format
+- Save updated data permanently
+- Ensure data persists after server restarts
+
+## Testing Performed
+
+### POST Persistence Testing
+
+- Created workout session using POST /api/session
+- Verified sessions.json updated correctly
+- Restarted server
+- Confirmed data loaded successfully from file
+
+### PUT Persistence Testing
+
+- Updated existing session using PUT /api/session/:id
+- Verified updated values were written to sessions.json
+- Restarted server
+- Confirmed updated data persisted correctly
+
+### DELETE Persistence Testing
+
+- Deleted existing session using DELETE /api/session/:id
+- Verified session removal from sessions.json
+- Restarted server
+- Confirmed deleted session remained removed
+
+### Startup Data Loading Test
+
+Verified that existing data was automatically loaded during server startup.
+
+Terminal Output:
+
+```text
+Loaded Sessions:
+[
+  {
+    exercise: 'Bench Press',
+    weight: 105,
+    reps: 5,
+    rpe: 8
+  }
+]
+```
+
+## Concepts Learned
+
+### Node.js File System Module
+
+```javascript
+const fs = require("fs");
+```
+
+Used for reading and writing files.
+
+### JSON.parse()
+
+Converts JSON text into JavaScript objects.
+
+```javascript
+JSON.parse(jsonData);
+```
+
+### JSON.stringify()
+
+Converts JavaScript objects into JSON text.
+
+```javascript
+JSON.stringify(data, null, 2);
+```
+
+### readFileSync()
+
+Reads file content synchronously.
+
+```javascript
+fs.readFileSync(path, "utf8");
+```
+
+### writeFileSync()
+
+Writes data to a file synchronously.
+
+```javascript
+fs.writeFileSync(path, data);
+```
+
+### Persistent Storage
+
+Learned how to store data permanently outside application memory.
+
+Before Day 10:
+
+```text
+Server Restart
+↓
+All Data Lost
+```
+
+After Day 10:
+
+```text
+Server Restart
+↓
+sessions.json Loaded
+↓
+Data Restored
+```
+
+## Result
+
+Successfully migrated session storage from memory-only storage to persistent file-based storage.
+
+The backend now:
+- Loads session data from file during startup
+- Saves new sessions automatically
+- Saves updated sessions automatically
+- Saves deleted session changes automatically
+- Preserves data across server restarts
+
+This is the first implementation of persistent storage and serves as a foundation before moving to database systems such as MongoDB.

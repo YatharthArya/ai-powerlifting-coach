@@ -1,13 +1,26 @@
 require("dotenv").config();
 
 const express = require("express");
-
+const fs = require("fs");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-let sessions = [];
+let sessions = JSON.parse(
+    fs.readFileSync("../database/sessions.json", "utf8")
+);
+
+console.log("Loaded Sessions:");
+console.log(sessions);
+
 let requestCount = 0;
+
+function saveSessions() {
+    fs.writeFileSync(
+        "../database/sessions.json",
+        JSON.stringify(sessions, null, 2)
+    );
+}
 
 app.use(express.json());
 
@@ -51,6 +64,7 @@ app.post("/api/session", (req, res) => {
     const session = req.body;
 
     sessions.push(session);
+    saveSessions();
 
     console.log("Current Sessions:");
     console.log(sessions);
@@ -96,6 +110,7 @@ app.put("/api/session/:id", (req, res) => {
     }
 
     sessions[sessionId] = req.body;
+    saveSessions();
 
     res.json({
         message: "Session updated successfully!",
@@ -115,6 +130,7 @@ app.delete("/api/session/:id", (req, res) => {
     }
 
     sessions.splice(sessionId, 1);
+    saveSessions();
 
     res.json({
         message: "Session deleted successfully!"
