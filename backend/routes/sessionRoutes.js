@@ -1,34 +1,45 @@
 const express = require("express");
 
 const router = express.Router();
+
 const validateSession = require("../middleware/validateSession");
 
-const fs = require("fs");
+const {
+    testController,
+    getAllSessions,
+    createSession,
+    updateSession,
+    getSessionById,
+    deleteSession
+} = require("../controllers/sessionController");
 
-let sessions = JSON.parse(
-    fs.readFileSync("../database/sessions.json", "utf8")
+
+router.get("/test", testController);
+
+router.get("/sessions", getAllSessions);
+
+router.get(
+    "/session/:id",
+    getSessionById
 );
 
-router.get("/test", (req, res) => {
-    res.json({
-        message: "Routes file working!"
-    });
-});
+router.post(
+    "/session",
+    validateSession,
+    createSession
+);
 
-router.post("/session", validateSession, (req, res) => {
-    const session = req.body;
+router.put(
+    "/session/:id",
+    validateSession,
+    updateSession
+);
 
-    res.json({
-        message: "POST route inside router working!",
-        session: session
-    });
-});
+router.delete(
+    "/session/:id",
+    deleteSession
+);
 
-router.get("/sessions", (req, res) => {
-    res.json({
-        totalSessions: sessions.length,
-        sessions: sessions
-    });
-});
+
 
 module.exports = router;

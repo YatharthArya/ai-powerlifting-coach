@@ -909,3 +909,474 @@ The backend now supports:
 - Custom status codes
 - Error logging
 - Improved maintainability
+
+
+# Day 13
+
+## Objective
+
+Refactor the backend into a modular Express application by separating middleware and routes into dedicated folders.
+
+---
+
+## Features Added
+
+### Middleware Folder
+
+Created:
+
+```text
+backend/middleware
+```
+
+Purpose:
+
+- Separate reusable middleware from server configuration
+- Improve maintainability
+- Reduce code clutter inside index.js
+
+---
+
+### Validation Middleware Module
+
+Created:
+
+```text
+backend/middleware/validateSession.js
+```
+
+Moved:
+
+```javascript
+validateSession()
+```
+
+out of index.js and exported it using:
+
+```javascript
+module.exports = validateSession;
+```
+
+Imported into:
+
+```javascript
+index.js
+```
+
+using:
+
+```javascript
+const validateSession = require("./middleware/validateSession");
+```
+
+Successfully verified validation remained functional.
+
+---
+
+### Error Handler Module
+
+Created:
+
+```text
+backend/middleware/errorHandler.js
+```
+
+Moved centralized error handling middleware out of index.js.
+
+Created:
+
+```javascript
+function errorHandler(err, req, res, next)
+```
+
+Exported using:
+
+```javascript
+module.exports = errorHandler;
+```
+
+Imported into index.js and connected using:
+
+```javascript
+app.use(errorHandler);
+```
+
+Successfully verified:
+
+```text
+GET /api/error
+GET /api/notfound
+```
+
+---
+
+### Routes Folder
+
+Created:
+
+```text
+backend/routes
+```
+
+Created:
+
+```text
+backend/routes/sessionRoutes.js
+```
+
+Purpose:
+
+- Separate route definitions from server configuration
+- Prepare for controller-based architecture
+
+---
+
+### Express Router
+
+Created:
+
+```javascript
+const router = express.Router();
+```
+
+Added test endpoint:
+
+```javascript
+router.get("/test")
+```
+
+Mounted router in index.js using:
+
+```javascript
+app.use("/api", sessionRoutes);
+```
+
+Successfully verified:
+
+```text
+GET /api/test
+```
+
+---
+
+### Sessions Route Migration
+
+Moved:
+
+```javascript
+GET /api/sessions
+```
+
+from:
+
+```text
+index.js
+```
+
+to:
+
+```text
+sessionRoutes.js
+```
+
+Successfully verified route execution through router module.
+
+---
+
+### POST Route Migration
+
+Moved:
+
+```javascript
+POST /api/session
+```
+
+from:
+
+```text
+index.js
+```
+
+to:
+
+```text
+sessionRoutes.js
+```
+
+Connected existing validation middleware inside router.
+
+Successfully verified:
+
+- Valid session creation
+- Validation middleware execution
+- Route handling through Express Router
+
+---
+
+## Concepts Learned
+
+- Express Router
+- Route Modularization
+- Middleware Modularization
+- Module Exports
+- Module Imports
+- Separation of Concerns
+- Express Application Structure
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```text
+index.js
+ ├── Routes
+ ├── Middleware
+ ├── Validation
+ ├── Error Handling
+ └── Server Startup
+```
+
+After:
+
+```text
+backend
+│
+├── middleware
+│   ├── validateSession.js
+│   └── errorHandler.js
+│
+├── routes
+│   └── sessionRoutes.js
+│
+└── index.js
+```
+
+---
+
+## Result
+
+Successfully refactored the application into a modular Express architecture.
+
+The backend now uses dedicated middleware and route modules, making the codebase cleaner, easier to maintain, and closer to production-level Express project structure.
+
+
+# Day 14
+
+## Objective
+
+Introduce Controllers and separate business logic from routing logic.
+
+---
+
+## Features Added
+
+### Controllers Folder
+
+Created:
+
+```text
+backend/controllers/sessionController.js
+```
+
+Purpose:
+
+- Move business logic out of route files
+- Improve maintainability
+- Follow professional Express architecture
+
+---
+
+### Test Controller
+
+Created:
+
+```javascript
+function testController(req, res) {
+    res.json({
+        message: "Controller working successfully!"
+    });
+}
+```
+
+Connected route:
+
+```javascript
+router.get("/test", testController);
+```
+
+Successfully verified controller execution.
+
+---
+
+### GET All Sessions Controller
+
+Created:
+
+```javascript
+function getAllSessions(req, res)
+```
+
+Responsibilities:
+
+- Read sessions.json
+- Return all stored sessions
+- Return total session count
+
+Connected route:
+
+```javascript
+router.get("/sessions", getAllSessions);
+```
+
+---
+
+### Create Session Controller
+
+Created:
+
+```javascript
+function createSession(req, res)
+```
+
+Responsibilities:
+
+- Read sessions.json
+- Add new session
+- Save updated file
+- Return success response
+
+Connected route:
+
+```javascript
+router.post(
+    "/session",
+    validateSession,
+    createSession
+);
+```
+
+Validation middleware remained functional.
+
+---
+
+### Update Session Controller
+
+Created:
+
+```javascript
+function updateSession(req, res)
+```
+
+Responsibilities:
+
+- Find session by ID
+- Validate existence
+- Update session
+- Save file
+- Return updated data
+
+Connected route:
+
+```javascript
+router.put(
+    "/session/:id",
+    validateSession,
+    updateSession
+);
+```
+
+---
+
+### Get Session By ID Controller
+
+Created:
+
+```javascript
+function getSessionById(req, res)
+```
+
+Responsibilities:
+
+- Find session by ID
+- Return session data
+- Return 404 if missing
+
+Connected route:
+
+```javascript
+router.get(
+    "/session/:id",
+    getSessionById
+);
+```
+
+---
+
+### Delete Session Controller
+
+Created:
+
+```javascript
+function deleteSession(req, res)
+```
+
+Responsibilities:
+
+- Find session by ID
+- Remove session
+- Save file
+- Return success response
+
+Connected route:
+
+```javascript
+router.delete(
+    "/session/:id",
+    deleteSession
+);
+```
+
+---
+
+## Concepts Learned
+
+- Controllers
+- Separation of Concerns
+- Route Layer
+- Controller Layer
+- File Persistence
+- CRUD Architecture
+- Modular Backend Design
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```text
+index.js
+ └── Routes + Logic + Storage
+```
+
+After:
+
+```text
+index.js
+    ↓
+sessionRoutes.js
+    ↓
+sessionController.js
+    ↓
+sessions.json
+```
+
+---
+
+## Result
+
+Successfully separated business logic from route definitions.
+
+Backend now follows a cleaner and more scalable Express architecture.
