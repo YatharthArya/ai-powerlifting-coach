@@ -531,3 +531,217 @@ The backend now:
 - Preserves data across server restarts
 
 This is the first implementation of persistent storage and serves as a foundation before moving to database systems such as MongoDB.
+
+
+# Day 11
+
+## Features Added
+
+- Created reusable validation middleware
+- Added exercise validation
+- Added weight validation
+- Added reps validation
+- Added RPE validation
+- Applied validation middleware to POST endpoint
+- Applied validation middleware to PUT endpoint
+- Added input protection before data reaches storage
+
+## Validation Middleware
+
+Created reusable middleware:
+
+```javascript
+function validateSession(req, res, next) {
+    const { exercise, weight, reps, rpe } = req.body;
+
+    if (!exercise || exercise.trim() === "") {
+        return res.status(400).json({
+            error: "Exercise is required"
+        });
+    }
+
+    if (!weight || weight <= 0) {
+        return res.status(400).json({
+            error: "Weight must be greater than 0"
+        });
+    }
+
+    if (!reps || reps <= 0) {
+        return res.status(400).json({
+            error: "Reps must be greater than 0"
+        });
+    }
+
+    if (!rpe || rpe < 1 || rpe > 10) {
+        return res.status(400).json({
+            error: "RPE must be between 1 and 10"
+        });
+    }
+
+    next();
+}
+```
+
+## Middleware Integration
+
+Applied middleware to:
+
+### POST Endpoint
+
+```javascript
+app.post("/api/session", validateSession, ...)
+```
+
+### PUT Endpoint
+
+```javascript
+app.put("/api/session/:id", validateSession, ...)
+```
+
+## Testing Performed
+
+### Exercise Validation
+
+Input:
+
+```json
+{
+    "exercise": "",
+    "weight": 140,
+    "reps": 5,
+    "rpe": 8
+}
+```
+
+Result:
+
+```json
+{
+    "error": "Exercise is required"
+}
+```
+
+### Weight Validation
+
+Input:
+
+```json
+{
+    "exercise": "Bench Press",
+    "weight": -100,
+    "reps": 5,
+    "rpe": 8
+}
+```
+
+Result:
+
+```json
+{
+    "error": "Weight must be greater than 0"
+}
+```
+
+### Reps Validation
+
+Input:
+
+```json
+{
+    "exercise": "Bench Press",
+    "weight": 100,
+    "reps": 0,
+    "rpe": 8
+}
+```
+
+Result:
+
+```json
+{
+    "error": "Reps must be greater than 0"
+}
+```
+
+### RPE Validation
+
+Input:
+
+```json
+{
+    "exercise": "Bench Press",
+    "weight": 100,
+    "reps": 5,
+    "rpe": 15
+}
+```
+
+Result:
+
+```json
+{
+    "error": "RPE must be between 1 and 10"
+}
+```
+
+### Valid Session Test
+
+Input:
+
+```json
+{
+    "exercise": "Squat",
+    "weight": 140,
+    "reps": 5,
+    "rpe": 8
+}
+```
+
+Result:
+
+Session saved successfully.
+
+### PUT Validation Test
+
+Verified validation middleware also prevents invalid updates and allows valid updates.
+
+## Concepts Learned
+
+- Validation Middleware
+- Reusable Middleware
+- Input Validation
+- Business Rules
+- Middleware Chaining
+- Request Filtering
+- Data Integrity
+- API Protection
+
+## Request Flow
+
+Before Day 11:
+
+```text
+Request
+↓
+Route Handler
+↓
+Database/File Storage
+```
+
+After Day 11:
+
+```text
+Request
+↓
+Validation Middleware
+↓
+Route Handler
+↓
+Database/File Storage
+```
+
+## Result
+
+Successfully implemented reusable validation middleware.
+
+The backend now prevents invalid session data from being stored and ensures data consistency across both creation and update operations.
