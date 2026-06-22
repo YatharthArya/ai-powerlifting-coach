@@ -90,6 +90,18 @@ app.get("/api/stats", (req, res) => {
     });
 });
 
+app.get("/api/error", (req, res, next) => {
+    next(new Error("Test error from Day 12"));
+});
+
+app.get("/api/notfound", (req, res, next) => {
+    const error = new Error("Session not found");
+
+    error.status = 404;
+
+    next(error);
+});
+
 app.post("/api/session", validateSession, (req, res) => {
     const session = req.body;
 
@@ -179,6 +191,14 @@ app.get("/api/search", (req, res) => {
     res.json({
         message: "Search completed!",
         exercise: exercise
+    });
+});
+
+app.use((err, req, res, next) => {
+    console.error("Error:", err.message);
+
+    res.status(err.status || 500).json({
+        error: err.message
     });
 });
 

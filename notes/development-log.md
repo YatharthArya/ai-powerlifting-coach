@@ -745,3 +745,167 @@ Database/File Storage
 Successfully implemented reusable validation middleware.
 
 The backend now prevents invalid session data from being stored and ensures data consistency across both creation and update operations.
+
+
+# Day 12
+
+## Features Added
+
+- Implemented centralized error handling middleware
+- Added test error endpoint
+- Added custom error status code support
+- Added centralized error logging
+- Implemented Express error pipeline using next(error)
+
+## Error Handling Middleware
+
+Created centralized error handler:
+
+```javascript
+app.use((err, req, res, next) => {
+    console.error("Error:", err.message);
+
+    res.status(err.status || 500).json({
+        error: err.message
+    });
+});
+```
+
+Purpose:
+- Handle errors from all routes in one location
+- Standardize error responses
+- Reduce duplicate error-handling code
+
+## Test Error Route
+
+Created:
+
+```javascript
+app.get("/api/error", (req, res, next) => {
+    next(new Error("Test error from Day 12"));
+});
+```
+
+Purpose:
+- Verify centralized error middleware functionality
+- Learn Express error propagation
+
+## Custom Status Code Route
+
+Created:
+
+```javascript
+app.get("/api/notfound", (req, res, next) => {
+    const error = new Error("Session not found");
+
+    error.status = 404;
+
+    next(error);
+});
+```
+
+Purpose:
+- Demonstrate custom status code handling
+- Differentiate between 404 and 500 errors
+
+## Testing Performed
+
+### Error Middleware Test
+
+Request:
+
+```text
+GET /api/error
+```
+
+Response:
+
+```json
+{
+    "error": "Test error from Day 12"
+}
+```
+
+Status:
+
+```text
+500 Internal Server Error
+```
+
+### Custom Status Code Test
+
+Request:
+
+```text
+GET /api/notfound
+```
+
+Response:
+
+```json
+{
+    "error": "Session not found"
+}
+```
+
+Status:
+
+```text
+404 Not Found
+```
+
+### Terminal Verification
+
+Verified error messages logged correctly:
+
+```text
+Error: Test error from Day 12
+Error: Session not found
+```
+
+## Concepts Learned
+
+- Error Middleware
+- Centralized Error Handling
+- next(error)
+- Express Error Pipeline
+- Custom HTTP Status Codes
+- Error Logging
+- Separation of Concerns
+
+## Request Flow
+
+Before Day 12:
+
+```text
+Request
+↓
+Route
+↓
+Error Response
+```
+
+After Day 12:
+
+```text
+Request
+↓
+Route
+↓
+next(error)
+↓
+Error Middleware
+↓
+Response
+```
+
+## Result
+
+Successfully implemented centralized error handling.
+
+The backend now supports:
+- Centralized error processing
+- Consistent error responses
+- Custom status codes
+- Error logging
+- Improved maintainability
