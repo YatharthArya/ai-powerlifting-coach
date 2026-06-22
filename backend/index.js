@@ -2,6 +2,9 @@ require("dotenv").config();
 
 const express = require("express");
 const fs = require("fs");
+const validateSession = require("./middleware/validateSession");
+const errorHandler = require("./middleware/errorHandler");
+const sessionRoutes = require("./routes/sessionRoutes");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -41,36 +44,6 @@ app.use((req, res, next) => {
     next();
 });
 
-function validateSession(req, res, next) {
-    const { exercise, weight, reps, rpe } = req.body;
-
-    if (!exercise || exercise.trim() === "") {
-        return res.status(400).json({
-            error: "Exercise is required"
-        });
-    }
-
-    if (!weight || weight <= 0) {
-        return res.status(400).json({
-            error: "Weight must be greater than 0"
-        });
-    }
-
-    if (!reps || reps <= 0) {
-        return res.status(400).json({
-            error: "Reps must be greater than 0"
-        });
-    }
-
-    if (!rpe || rpe < 1 || rpe > 10) {
-        return res.status(400).json({
-            error: "RPE must be between 1 and 10"
-        });
-    }
-
-    next();
-}
-
 app.get("/", (req, res) => {
     res.send("AI Powerlifting Coach Backend Running!");
 });
@@ -102,28 +75,22 @@ app.get("/api/notfound", (req, res, next) => {
     next(error);
 });
 
-app.post("/api/session", validateSession, (req, res) => {
-    const session = req.body;
+//app.post("/api/session", validateSession, (req, res) => {
+  //  const session = req.body;
 
-    sessions.push(session);
-    saveSessions();
+    //sessions.push(session);
+    //saveSessions();
 
-    console.log("Current Sessions:");
-    console.log(sessions);
+    //console.log("Current Sessions:");
+    //console.log(sessions);
 
-    res.json({
-        message: "Session saved successfully!",
-        totalSessions: sessions.length,
-        savedSession: session
-    });
-});
+    //res.json({
+      //  message: "Session saved successfully!",
+        //totalSessions: sessions.length,
+        //savedSession: session
+    //});
+//});
 
-app.get("/api/sessions", (req, res) => {
-    res.json({
-        totalSessions: sessions.length,
-        sessions: sessions
-    });
-});
 
 app.get("/api/session/:id", (req, res) => {
     const sessionId = parseInt(req.params.id);
@@ -194,13 +161,9 @@ app.get("/api/search", (req, res) => {
     });
 });
 
-app.use((err, req, res, next) => {
-    console.error("Error:", err.message);
+app.use("/api", sessionRoutes);
 
-    res.status(err.status || 500).json({
-        error: err.message
-    });
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

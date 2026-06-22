@@ -4,5 +4,11 @@
     "weight": 110,
     "reps": 5,
     "rpe": 8
+  },
+  {
+    "exercise": "Squat",
+    "weight": 140,
+    "reps": 5,
+    "rpe": 8
   }
 ]
