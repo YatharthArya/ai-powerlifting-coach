@@ -1,16 +1,18 @@
+const {
+    getSessions,
+    saveSessions
+} = require("../services/sessionService");
+
 function testController(req, res) {
     res.json({
         message: "Controller working successfully!"
     });
 }
 
-const fs = require("fs");
 
 function getAllSessions(req, res) {
 
-    const sessions = JSON.parse(
-        fs.readFileSync("../database/sessions.json", "utf8")
-    );
+    const sessions = getSessions();
 
     res.json({
         totalSessions: sessions.length,
@@ -20,18 +22,13 @@ function getAllSessions(req, res) {
 
 function createSession(req, res) {
 
-    const sessions = JSON.parse(
-        fs.readFileSync("../database/sessions.json", "utf8")
-    );
+    const sessions = getSessions();
 
     const session = req.body;
 
     sessions.push(session);
 
-    fs.writeFileSync(
-        "../database/sessions.json",
-        JSON.stringify(sessions, null, 2)
-    );
+    saveSessions(sessions);
 
     res.json({
         message: "Session saved successfully!",
@@ -42,9 +39,7 @@ function createSession(req, res) {
 
 function updateSession(req, res) {
 
-    const sessions = JSON.parse(
-        fs.readFileSync("../database/sessions.json", "utf8")
-    );
+    const sessions = getSessions();
 
     const sessionId = parseInt(req.params.id);
 
@@ -56,10 +51,7 @@ function updateSession(req, res) {
 
     sessions[sessionId] = req.body;
 
-    fs.writeFileSync(
-        "../database/sessions.json",
-        JSON.stringify(sessions, null, 2)
-    );
+    saveSessions(sessions);
 
     res.json({
         message: "Session updated successfully!",
@@ -69,9 +61,7 @@ function updateSession(req, res) {
 
 function getSessionById(req, res) {
 
-    const sessions = JSON.parse(
-        fs.readFileSync("../database/sessions.json", "utf8")
-    );
+    const sessions = getSessions();
 
     const sessionId = parseInt(req.params.id);
 
@@ -91,9 +81,7 @@ function getSessionById(req, res) {
 
 function deleteSession(req, res) {
 
-    const sessions = JSON.parse(
-        fs.readFileSync("../database/sessions.json", "utf8")
-    );
+    const sessions = getSessions();
 
     const sessionId = parseInt(req.params.id);
 
@@ -107,10 +95,7 @@ function deleteSession(req, res) {
 
     sessions.splice(sessionId, 1);
 
-    fs.writeFileSync(
-        "../database/sessions.json",
-        JSON.stringify(sessions, null, 2)
-    );
+    saveSessions(sessions);
 
     res.json({
         message: "Session deleted successfully!"

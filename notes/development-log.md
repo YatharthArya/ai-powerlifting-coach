@@ -1380,3 +1380,250 @@ sessions.json
 Successfully separated business logic from route definitions.
 
 Backend now follows a cleaner and more scalable Express architecture.
+
+
+# Day 15
+
+## Objective
+
+Introduce a Service Layer and move all file operations out of controllers.
+
+---
+
+## Features Added
+
+### Services Folder
+
+Created:
+
+```text
+backend/services
+```
+
+Created:
+
+```text
+backend/services/sessionService.js
+```
+
+Purpose:
+
+- Centralize database/file operations
+- Remove file system logic from controllers
+- Improve separation of concerns
+
+---
+
+### Session Service
+
+Created:
+
+```javascript
+function getSessions()
+```
+
+Responsibilities:
+
+- Read sessions.json
+- Parse JSON data
+- Return session array
+
+Implementation:
+
+```javascript
+function getSessions() {
+    return JSON.parse(
+        fs.readFileSync(
+            "../database/sessions.json",
+            "utf8"
+        )
+    );
+}
+```
+
+---
+
+### Save Sessions Service
+
+Created:
+
+```javascript
+function saveSessions(sessions)
+```
+
+Responsibilities:
+
+- Write updated session data
+- Format JSON output
+- Persist changes to disk
+
+Implementation:
+
+```javascript
+function saveSessions(sessions) {
+    fs.writeFileSync(
+        "../database/sessions.json",
+        JSON.stringify(sessions, null, 2)
+    );
+}
+```
+
+---
+
+## Controller Refactoring
+
+Controllers now use service functions instead of direct file operations.
+
+Before:
+
+```javascript
+const sessions = JSON.parse(
+    fs.readFileSync(...)
+);
+```
+
+After:
+
+```javascript
+const sessions = getSessions();
+```
+
+---
+
+### Updated Controllers
+
+Refactored:
+
+```javascript
+getAllSessions()
+createSession()
+updateSession()
+getSessionById()
+deleteSession()
+```
+
+to use:
+
+```javascript
+getSessions()
+saveSessions()
+```
+
+---
+
+## File System Removal
+
+Removed:
+
+```javascript
+const fs = require("fs");
+```
+
+from:
+
+```text
+sessionController.js
+```
+
+Controllers no longer access files directly.
+
+---
+
+## Testing Performed
+
+### GET Sessions
+
+Verified:
+
+```text
+GET /api/sessions
+```
+
+Returned stored session data successfully.
+
+---
+
+### POST Session
+
+Verified:
+
+```text
+POST /api/session
+```
+
+Created and persisted new sessions.
+
+---
+
+### PUT Session
+
+Verified:
+
+```text
+PUT /api/session/:id
+```
+
+Updated session data correctly.
+
+---
+
+### DELETE Session
+
+Verified:
+
+```text
+DELETE /api/session/:id
+```
+
+Removed session and persisted changes.
+
+---
+
+## Concepts Learned
+
+- Service Layer
+- Separation of Concerns
+- Business Logic Isolation
+- File Service Pattern
+- Controller-Service Architecture
+- Backend Scalability Principles
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```text
+Routes
+   ↓
+Controllers
+   ├─ HTTP Logic
+   ├─ Read File
+   └─ Write File
+```
+
+After:
+
+```text
+Routes
+   ↓
+Controllers
+   └─ HTTP Logic
+
+Services
+   ├─ Read File
+   └─ Write File
+
+Database
+```
+
+---
+
+## Result
+
+Successfully introduced a Service Layer.
+
+Controllers now focus only on request handling and responses.
+
+All file operations are centralized inside the service layer, making the application cleaner, more maintainable, and closer to production backend architecture.
