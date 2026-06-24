@@ -1,6 +1,9 @@
 const {
     getSessions,
-    saveSessions
+    getSessionById,
+    addSession,
+    updateExistingSession,
+    removeSession
 } = require("../services/sessionService");
 
 function testController(req, res) {
@@ -20,52 +23,45 @@ function getAllSessions(req, res) {
     });
 }
 
-function createSession(req, res) {
 
-    const sessions = getSessions();
+function createSession(req, res) {
 
     const session = req.body;
 
-    sessions.push(session);
-
-    saveSessions(sessions);
+    const result = addSession(session);
 
     res.json({
         message: "Session saved successfully!",
-        totalSessions: sessions.length,
-        savedSession: session
+        totalSessions: result.totalSessions,
+        savedSession: result.savedSession
     });
 }
 
 function updateSession(req, res) {
 
-    const sessions = getSessions();
-
     const sessionId = parseInt(req.params.id);
 
-    if (!sessions[sessionId]) {
+    const updatedSession = updateExistingSession(
+        sessionId,
+        req.body
+    );
+
+    if (!updatedSession) {
         return res.status(404).json({
             error: "Session not found"
         });
     }
 
-    sessions[sessionId] = req.body;
-
-    saveSessions(sessions);
-
     res.json({
         message: "Session updated successfully!",
-        updatedSession: sessions[sessionId]
+        updatedSession: updatedSession
     });
 }
 
-function getSessionById(req, res) {
-
-    const sessions = getSessions();
+function getSessionByIdController(req, res) {
 
     const sessionId = parseInt(req.params.id);
-
-    const session = sessions[sessionId];
+    const session = getSessionById(sessionId);
 
     if (!session) {
         return res.status(404).json({
@@ -81,21 +77,15 @@ function getSessionById(req, res) {
 
 function deleteSession(req, res) {
 
-    const sessions = getSessions();
-
     const sessionId = parseInt(req.params.id);
 
-    const session = sessions[sessionId];
+    const deleted = removeSession(sessionId);
 
-    if (!session) {
+    if (!deleted) {
         return res.status(404).json({
             error: "Session not found"
         });
     }
-
-    sessions.splice(sessionId, 1);
-
-    saveSessions(sessions);
 
     res.json({
         message: "Session deleted successfully!"
@@ -107,6 +97,6 @@ module.exports = {
     getAllSessions,
     createSession,
     updateSession,
-    getSessionById,
+    getSessionByIdController,
     deleteSession
 };

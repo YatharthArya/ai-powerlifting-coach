@@ -9,7 +9,7 @@ const {
     getAllSessions,
     createSession,
     updateSession,
-    getSessionById,
+    getSessionByIdController,
     deleteSession
 } = require("../controllers/sessionController");
 
@@ -20,7 +20,7 @@ router.get("/sessions", getAllSessions);
 
 router.get(
     "/session/:id",
-    getSessionById
+    getSessionByIdController
 );
 
 router.post(

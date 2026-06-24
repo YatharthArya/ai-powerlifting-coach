@@ -1627,3 +1627,300 @@ Successfully introduced a Service Layer.
 Controllers now focus only on request handling and responses.
 
 All file operations are centralized inside the service layer, making the application cleaner, more maintainable, and closer to production backend architecture.
+
+
+# Day 16
+
+## Objective
+
+Introduce a Repository Layer and continue moving business logic from controllers into services.
+
+---
+
+## Features Added
+
+### Repository Layer
+
+Created:
+
+```text
+backend/repositories/sessionRepository.js
+```
+
+Purpose:
+
+- Isolate data access logic
+- Separate file operations from business logic
+- Prepare for future database migration
+
+---
+
+### Session Repository
+
+Created:
+
+```javascript
+readSessions()
+```
+
+Responsibilities:
+
+- Read sessions.json
+- Parse JSON data
+- Return session collection
+
+Created:
+
+```javascript
+writeSessions()
+```
+
+Responsibilities:
+
+- Persist updated session data
+- Format JSON output
+
+---
+
+### Find Session By ID Repository Function
+
+Created:
+
+```javascript
+findSessionById(sessionId)
+```
+
+Responsibilities:
+
+- Retrieve a session by index
+- Centralize session lookup logic
+
+---
+
+## Service Layer Refactoring
+
+Updated:
+
+```text
+sessionService.js
+```
+
+to use repository functions instead of direct file access.
+
+---
+
+### Get Session By ID Service
+
+Created:
+
+```javascript
+getSessionById(sessionId)
+```
+
+Responsibilities:
+
+- Retrieve session through repository layer
+
+---
+
+### Add Session Service
+
+Created:
+
+```javascript
+addSession(session)
+```
+
+Responsibilities:
+
+- Retrieve existing sessions
+- Add new session
+- Save updated data
+- Return result object
+
+---
+
+### Update Session Service
+
+Created:
+
+```javascript
+updateExistingSession(
+    sessionId,
+    updatedSession
+)
+```
+
+Responsibilities:
+
+- Validate session existence
+- Update session
+- Persist changes
+- Return updated session
+
+---
+
+### Remove Session Service
+
+Created:
+
+```javascript
+removeSession(sessionId)
+```
+
+Responsibilities:
+
+- Validate session existence
+- Delete session
+- Persist changes
+- Return operation status
+
+---
+
+## Controller Refactoring
+
+Controllers now delegate operations to services.
+
+Before:
+
+```javascript
+Controller
+ ├─ Read Data
+ ├─ Update Data
+ ├─ Delete Data
+ └─ Save Data
+```
+
+After:
+
+```javascript
+Controller
+ ├─ Request Handling
+ ├─ Response Handling
+ └─ Error Responses
+```
+
+Business operations moved to services.
+
+---
+
+## Testing Performed
+
+### GET Session
+
+Verified:
+
+```text
+GET /api/session/0
+```
+
+Returned correct session.
+
+---
+
+### Invalid GET
+
+Verified:
+
+```text
+GET /api/session/99
+```
+
+Returned:
+
+```json
+{
+    "error": "Session not found"
+}
+```
+
+---
+
+### POST Session
+
+Verified:
+
+```text
+POST /api/session
+```
+
+Created and persisted session successfully.
+
+---
+
+### PUT Session
+
+Verified:
+
+```text
+PUT /api/session/:id
+```
+
+Updated session successfully.
+
+---
+
+### DELETE Session
+
+Verified:
+
+```text
+DELETE /api/session/:id
+```
+
+Deleted session successfully.
+
+---
+
+## Concepts Learned
+
+- Repository Pattern
+- Data Access Layer
+- Controller-Service-Repository Architecture
+- Business Logic Separation
+- Database Abstraction
+- Scalable Backend Design
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+sessions.json
+```
+
+After:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+Repositories
+   ↓
+sessions.json
+```
+
+---
+
+## Result
+
+Successfully introduced a Repository Layer.
+
+Controllers now focus on HTTP concerns.
+
+Services contain business logic.
+
+Repositories contain data access logic.
+
+The backend is now structured similarly to production-grade backend applications and is prepared for future migration to a real database.

@@ -1,22 +1,70 @@
-const fs = require("fs");
+const {
+    readSessions,
+    writeSessions,
+    findSessionById
+} = require("../repositories/sessionRepository");
 
 function getSessions() {
-    return JSON.parse(
-        fs.readFileSync(
-            "../database/sessions.json",
-            "utf8"
-        )
-    );
+    return readSessions();
 }
 
 function saveSessions(sessions) {
-    fs.writeFileSync(
-        "../database/sessions.json",
-        JSON.stringify(sessions, null, 2)
-    );
+    writeSessions(sessions);
+}
+
+function getSessionById(sessionId) {
+    return findSessionById(sessionId);
+}
+
+function addSession(session) {
+
+    const sessions = getSessions();
+
+    sessions.push(session);
+
+    saveSessions(sessions);
+
+    return {
+        totalSessions: sessions.length,
+        savedSession: session
+    };
+}
+
+function updateExistingSession(sessionId, updatedSession) {
+
+    const sessions = getSessions();
+
+    if (!sessions[sessionId]) {
+        return null;
+    }
+
+    sessions[sessionId] = updatedSession;
+
+    saveSessions(sessions);
+
+    return sessions[sessionId];
+}
+
+function removeSession(sessionId) {
+
+    const sessions = getSessions();
+
+    if (!sessions[sessionId]) {
+        return false;
+    }
+
+    sessions.splice(sessionId, 1);
+
+    saveSessions(sessions);
+
+    return true;
 }
 
 module.exports = {
     getSessions,
-    saveSessions
+    saveSessions,
+    getSessionById,
+    addSession,
+    updateExistingSession,
+    removeSession
 };
