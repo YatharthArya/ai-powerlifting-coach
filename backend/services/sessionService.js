@@ -1,6 +1,5 @@
 const {
     readSessions,
-    writeSessions,
     findSessionById,
     insertSession,
     updateSessionById,
@@ -9,10 +8,6 @@ const {
 
 function getSessions() {
     return readSessions();
-}
-
-function saveSessions(sessions) {
-    writeSessions(sessions);
 }
 
 function getSessionById(sessionId) {
@@ -47,7 +42,6 @@ function removeSession(sessionId) {
 
 module.exports = {
     getSessions,
-    saveSessions,
     getSessionById,
     addSession,
     updateExistingSession,

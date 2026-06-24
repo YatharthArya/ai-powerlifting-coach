@@ -1,29 +1,16 @@
 require("dotenv").config();
 
 const express = require("express");
-const fs = require("fs");
-const validateSession = require("./middleware/validateSession");
 const errorHandler = require("./middleware/errorHandler");
 const sessionRoutes = require("./routes/sessionRoutes");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-let sessions = JSON.parse(
-    fs.readFileSync("../database/sessions.json", "utf8")
-);
 
-console.log("Loaded Sessions:");
-console.log(sessions);
 
 let requestCount = 0;
 
-function saveSessions() {
-    fs.writeFileSync(
-        "../database/sessions.json",
-        JSON.stringify(sessions, null, 2)
-    );
-}
 
 app.use(express.json());
 
@@ -75,76 +62,6 @@ app.get("/api/notfound", (req, res, next) => {
     next(error);
 });
 
-//app.post("/api/session", validateSession, (req, res) => {
-  //  const session = req.body;
-
-    //sessions.push(session);
-    //saveSessions();
-
-    //console.log("Current Sessions:");
-    //console.log(sessions);
-
-    //res.json({
-      //  message: "Session saved successfully!",
-        //totalSessions: sessions.length,
-        //savedSession: session
-    //});
-//});
-
-
-app.get("/api/session/:id", (req, res) => {
-    const sessionId = parseInt(req.params.id);
-
-    const session = sessions[sessionId];
-
-    if (!session) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
-    }
-
-    res.json({
-        sessionId: sessionId,
-        session: session
-    });
-});
-
-app.put("/api/session/:id", validateSession, (req, res) => {
-    const sessionId = parseInt(req.params.id);
-
-    if (!sessions[sessionId]) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
-    }
-
-    sessions[sessionId] = req.body;
-    saveSessions();
-
-    res.json({
-        message: "Session updated successfully!",
-        updatedSession: sessions[sessionId]
-    });
-});
-
-app.delete("/api/session/:id", (req, res) => {
-    const sessionId = parseInt(req.params.id);
-
-    const session = sessions[sessionId];
-
-    if (!session) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
-    }
-
-    sessions.splice(sessionId, 1);
-    saveSessions();
-
-    res.json({
-        message: "Session deleted successfully!"
-    });
-});
 
 app.get("/api/search", (req, res) => {
     const exercise = req.query.exercise;

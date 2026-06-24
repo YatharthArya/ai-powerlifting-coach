@@ -2167,3 +2167,106 @@ Services delegate storage operations to repositories.
 Successfully centralized CRUD data access logic inside the Repository Layer.
 
 Application architecture now more closely resembles production-grade backend systems and is better prepared for future database migration.
+
+# Day 18 – Repository Layer Refactor
+
+## Objective
+Move all database access responsibilities from Service Layer into Repository Layer.
+
+## Changes Made
+
+### Repository Layer
+
+Added dedicated repository functions:
+
+- readSessions()
+- writeSessions()
+- findSessionById()
+- insertSession()
+- updateSessionById()
+- deleteSessionById()
+
+Repository is now the only layer allowed to interact with sessions.json.
+
+### Service Layer
+
+Refactored Service Layer to call Repository functions instead of directly reading or writing files.
+
+Implemented:
+
+- getSessions()
+- getSessionById()
+- addSession()
+- updateExistingSession()
+- removeSession()
+
+Service Layer now contains business logic only.
+
+### Controller Layer
+
+No direct file access.
+
+Controllers now:
+
+- receive request
+- call service functions
+- return response
+
+### Architecture Improvement
+
+Before:
+
+Controller → Service → File System
+
+After:
+
+Controller → Service → Repository → File System
+
+This separation improves maintainability, scalability, and database migration readiness.
+
+## Learning
+
+Repository Layer manages data access.
+
+Service Layer manages business logic.
+
+Controller Layer manages HTTP requests and responses.
+
+Keeping responsibilities separated makes large applications easier to maintain and extend.
+
+Day 18 – Repository Pattern Refactoring
+
+Objectives:
+- Move data access logic from Service layer to Repository layer.
+- Complete separation of Controller, Service, and Repository responsibilities.
+- Remove stale in-memory session handling from index.js.
+
+Completed:
+- Created Repository functions:
+  - readSessions()
+  - writeSessions()
+  - findSessionById()
+  - insertSession()
+  - updateSessionById()
+  - deleteSessionById()
+- Refactored Service layer to delegate data operations to Repository.
+- Removed direct session CRUD logic from index.js.
+- Removed stale in-memory sessions array usage.
+- Verified all CRUD endpoints function correctly through Controller → Service → Repository architecture.
+
+Bug Found:
+- DELETE and other operations sometimes required server restart.
+- Root cause: old CRUD routes in index.js used an in-memory sessions array while new routes used sessions.json through Repository.
+- Fixed by removing old routes and forcing all requests through the new architecture.
+
+Testing:
+- GET ALL → Passed
+- GET BY ID → Passed
+- POST → Passed
+- PUT → Passed
+- DELETE → Passed
+- Validation Errors → Passed
+- 404 Handling → Passed
+
+Key Learning:
+Repository Pattern centralizes data access and prevents duplication. Mixing old routes with refactored architecture can create stale state bugs that are difficult to trace.
