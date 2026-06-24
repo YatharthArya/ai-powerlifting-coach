@@ -1,7 +1,10 @@
 const {
     readSessions,
     writeSessions,
-    findSessionById
+    findSessionById,
+    insertSession,
+    updateSessionById,
+    deleteSessionById
 } = require("../repositories/sessionRepository");
 
 function getSessions() {
@@ -18,11 +21,7 @@ function getSessionById(sessionId) {
 
 function addSession(session) {
 
-    const sessions = getSessions();
-
-    sessions.push(session);
-
-    saveSessions(sessions);
+    const sessions = insertSession(session);
 
     return {
         totalSessions: sessions.length,
@@ -30,34 +29,20 @@ function addSession(session) {
     };
 }
 
-function updateExistingSession(sessionId, updatedSession) {
+function updateExistingSession(
+    sessionId,
+    updatedSession
+) {
 
-    const sessions = getSessions();
-
-    if (!sessions[sessionId]) {
-        return null;
-    }
-
-    sessions[sessionId] = updatedSession;
-
-    saveSessions(sessions);
-
-    return sessions[sessionId];
+    return updateSessionById(
+        sessionId,
+        updatedSession
+    );
 }
 
 function removeSession(sessionId) {
 
-    const sessions = getSessions();
-
-    if (!sessions[sessionId]) {
-        return false;
-    }
-
-    sessions.splice(sessionId, 1);
-
-    saveSessions(sessions);
-
-    return true;
+    return deleteSessionById(sessionId);
 }
 
 module.exports = {

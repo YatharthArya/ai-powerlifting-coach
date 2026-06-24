@@ -22,8 +22,55 @@ function findSessionById(sessionId) {
     return sessions[sessionId];
 }
 
+function insertSession(session) {
+
+    const sessions = readSessions();
+
+    sessions.push(session);
+
+    writeSessions(sessions);
+
+    return sessions;
+}
+
+function updateSessionById(
+    sessionId,
+    updatedSession
+) {
+
+    const sessions = readSessions();
+
+    if (!sessions[sessionId]) {
+        return null;
+    }
+
+    sessions[sessionId] = updatedSession;
+
+    writeSessions(sessions);
+
+    return sessions[sessionId];
+}
+
+function deleteSessionById(sessionId) {
+
+    const sessions = readSessions();
+
+    if (!sessions[sessionId]) {
+        return false;
+    }
+
+    sessions.splice(sessionId, 1);
+
+    writeSessions(sessions);
+
+    return true;
+}
+
 module.exports = {
     readSessions,
     writeSessions,
-    findSessionById
+    findSessionById,
+    insertSession,
+    updateSessionById,
+    deleteSessionById
 };

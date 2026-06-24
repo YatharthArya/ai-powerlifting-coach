@@ -1924,3 +1924,246 @@ Services contain business logic.
 Repositories contain data access logic.
 
 The backend is now structured similarly to production-grade backend applications and is prepared for future migration to a real database.
+
+# Day 17
+
+## Objective
+
+Move CRUD data manipulation operations from the Service Layer into the Repository Layer.
+
+---
+
+## Features Added
+
+### Insert Session Repository Function
+
+Created:
+
+```javascript
+insertSession(session)
+```
+
+Responsibilities:
+
+- Read stored sessions
+- Insert new session
+- Persist updated data
+- Return updated collection
+
+---
+
+### Update Session Repository Function
+
+Created:
+
+```javascript
+updateSessionById(
+    sessionId,
+    updatedSession
+)
+```
+
+Responsibilities:
+
+- Validate session existence
+- Update session data
+- Persist changes
+- Return updated session
+
+---
+
+### Delete Session Repository Function
+
+Created:
+
+```javascript
+deleteSessionById(sessionId)
+```
+
+Responsibilities:
+
+- Validate session existence
+- Remove session
+- Persist changes
+- Return operation status
+
+---
+
+## Service Layer Refactoring
+
+Refactored:
+
+```javascript
+addSession()
+```
+
+to use:
+
+```javascript
+insertSession()
+```
+
+from the repository.
+
+---
+
+Refactored:
+
+```javascript
+updateExistingSession()
+```
+
+to use:
+
+```javascript
+updateSessionById()
+```
+
+from the repository.
+
+---
+
+Refactored:
+
+```javascript
+removeSession()
+```
+
+to use:
+
+```javascript
+deleteSessionById()
+```
+
+from the repository.
+
+---
+
+## Testing Performed
+
+### POST Session
+
+Verified:
+
+```text
+POST /api/session
+```
+
+Successfully created and persisted session data.
+
+---
+
+### PUT Session
+
+Verified:
+
+```text
+PUT /api/session/:id
+```
+
+Successfully updated existing session.
+
+---
+
+### Invalid PUT
+
+Verified:
+
+```text
+PUT /api/session/99
+```
+
+Returned:
+
+```json
+{
+    "error": "Session not found"
+}
+```
+
+---
+
+### DELETE Session
+
+Verified:
+
+```text
+DELETE /api/session/:id
+```
+
+Successfully removed session.
+
+---
+
+### Invalid DELETE
+
+Verified:
+
+```text
+DELETE /api/session/99
+```
+
+Returned:
+
+```json
+{
+    "error": "Session not found"
+}
+```
+
+---
+
+## Concepts Learned
+
+- Repository Pattern
+- CRUD Repository Design
+- Data Access Layer
+- Layered Backend Architecture
+- Separation of Concerns
+- Scalable Backend Design
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+Repositories
+   ↓
+sessions.json
+```
+
+Service layer still performed some data manipulation.
+
+After:
+
+```text
+Routes
+   ↓
+Controllers
+   ↓
+Services
+   ↓
+Repositories
+   ↓
+sessions.json
+```
+
+Repository layer now owns CRUD operations.
+
+Services delegate storage operations to repositories.
+
+---
+
+## Result
+
+Successfully centralized CRUD data access logic inside the Repository Layer.
+
+Application architecture now more closely resembles production-grade backend systems and is better prepared for future database migration.
