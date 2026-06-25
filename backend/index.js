@@ -1,8 +1,12 @@
 require("dotenv").config();
 
 const express = require("express");
+
 const errorHandler = require("./middleware/errorHandler");
 const sessionRoutes = require("./routes/sessionRoutes");
+const systemRoutes = require("./routes/systemRoutes");
+const logger = require("./middleware/logger");
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -17,37 +21,17 @@ app.use(express.json());
 app.use((req, res, next) => {
     requestCount++;
 
+    req.requestCount = requestCount;
+
     console.log("Total Requests:", requestCount);
 
     next();
 });
 
-app.use((req, res, next) => {
-    console.log("----------");
-    console.log("Method:", req.method);
-    console.log("URL:", req.url);
-    console.log("Time:", new Date().toLocaleString());
-
-    next();
-});
+app.use(logger);
 
 app.get("/", (req, res) => {
     res.send("AI Powerlifting Coach Backend Running!");
-});
-
-// Add this new block ↓↓↓
-app.get("/api/status", (req, res) => {
-    res.json({
-        status: "online",
-        application: process.env.APP_NAME,
-        version: "0.0.4"
-    });
-});
-
-app.get("/api/stats", (req, res) => {
-    res.json({
-        totalRequests: requestCount
-    });
 });
 
 app.get("/api/error", (req, res, next) => {
@@ -62,22 +46,7 @@ app.get("/api/notfound", (req, res, next) => {
     next(error);
 });
 
-
-app.get("/api/search", (req, res) => {
-    const exercise = req.query.exercise;
-
-    if (!exercise) {
-        return res.status(400).json({
-            error: "Exercise query parameter is required"
-        });
-    }
-
-    res.json({
-        message: "Search completed!",
-        exercise: exercise
-    });
-});
-
+app.use("/api", systemRoutes);
 app.use("/api", sessionRoutes);
 
 app.use(errorHandler);

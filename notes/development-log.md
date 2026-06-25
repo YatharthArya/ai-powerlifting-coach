@@ -2270,3 +2270,258 @@ Testing:
 
 Key Learning:
 Repository Pattern centralizes data access and prevents duplication. Mixing old routes with refactored architecture can create stale state bugs that are difficult to trace.
+
+# Day 19
+
+## Objective
+
+Improve project organization by introducing centralized configuration and separating system-related routes from the main application file.
+
+---
+
+## Features Added
+
+### Configuration Layer
+
+Created:
+
+```text
+backend/config/paths.js
+```
+
+Added a centralized path configuration for the session database file.
+
+```javascript
+const path = require("path");
+
+const SESSIONS_FILE = path.join(
+    __dirname,
+    "../../database/sessions.json"
+);
+```
+
+Repository now imports this configuration instead of using hardcoded file paths.
+
+---
+
+### Repository Refactoring
+
+Updated:
+
+```text
+sessionRepository.js
+```
+
+Replaced:
+
+```javascript
+"../database/sessions.json"
+```
+
+with:
+
+```javascript
+SESSIONS_FILE
+```
+
+This centralizes file path management and improves maintainability.
+
+---
+
+### System Routes
+
+Created:
+
+```text
+backend/routes/systemRoutes.js
+```
+
+Moved the following endpoints from `index.js`:
+
+- GET /api/status
+- GET /api/stats
+- GET /api/search
+
+This keeps `index.js` focused on server configuration while grouping related endpoints into their own router.
+
+---
+
+### Request Count Middleware
+
+Enhanced the request counter middleware.
+
+Added:
+
+```javascript
+req.requestCount = requestCount;
+```
+
+This allows route handlers to access the current request count without relying on global variables.
+
+---
+
+### Logger Middleware
+
+Created:
+
+```text
+backend/middleware/logger.js
+```
+
+Moved request logging middleware out of `index.js`.
+
+Logger now records:
+
+- HTTP Method
+- Request URL
+- Request Time
+
+using a dedicated middleware module.
+
+---
+
+### Index.js Cleanup
+
+Removed:
+
+- Direct system routes
+- Unused imports
+- Inline logger middleware
+
+`index.js` now focuses on:
+
+- Express configuration
+- Middleware registration
+- Route registration
+- Server startup
+
+---
+
+## Testing Performed
+
+Verified:
+
+### Status Endpoint
+
+```
+GET /api/status
+```
+
+Returned application status successfully.
+
+---
+
+### Statistics Endpoint
+
+```
+GET /api/stats
+```
+
+Returned total request count successfully.
+
+---
+
+### Search Endpoint
+
+```
+GET /api/search?exercise=bench
+```
+
+Returned expected search response.
+
+---
+
+### CRUD Regression Testing
+
+Verified all CRUD operations after refactoring:
+
+- GET Sessions
+- GET Session by ID
+- POST Session
+- PUT Session
+- DELETE Session
+
+All endpoints functioned correctly without restarting the server.
+
+---
+
+## Bug Fixed
+
+### Stale Session State
+
+Observed:
+
+- POST succeeded
+- DELETE sometimes returned "Session not found"
+- Restarting the server temporarily resolved the issue
+
+Root Cause:
+
+Old CRUD routes and an in-memory `sessions` array still existed in `index.js`, causing requests to bypass the new Repository Layer.
+
+Resolution:
+
+- Removed obsolete CRUD routes from `index.js`
+- Removed in-memory session storage
+- Ensured all CRUD operations pass through:
+
+Routes → Controllers → Services → Repositories → sessions.json
+
+---
+
+## Concepts Learned
+
+- Configuration Layer
+- Path Management using `path.join()`
+- Express Router Organization
+- Modular Middleware
+- Request Context (`req.requestCount`)
+- Refactoring Legacy Code
+- Eliminating Stale State Bugs
+- Regression Testing after Refactoring
+
+---
+
+## Architecture Evolution
+
+Before:
+
+```
+index.js
+ ├── Server Setup
+ ├── Middleware
+ ├── System Routes
+ ├── Session Routes
+ └── CRUD Logic
+```
+
+After:
+
+```
+index.js
+ ├── Server Setup
+ ├── Middleware Registration
+ └── Route Registration
+
+systemRoutes.js
+ ├── Status
+ ├── Stats
+ └── Search
+
+sessionRoutes.js
+ └── Session API
+
+logger.js
+ └── Request Logging
+
+paths.js
+ └── Centralized Configuration
+```
+
+---
+
+## Result
+
+Successfully modularized application configuration, middleware, and system routes while maintaining complete CRUD functionality.
+
+The backend now follows a cleaner layered architecture and is better prepared for future enhancements such as authentication and database integration.

@@ -4,5 +4,11 @@
     "weight": 100,
     "reps": 1,
     "rpe": 9
+  },
+  {
+    "exercise": "Deadlift",
+    "weight": 170,
+    "reps": 2,
+    "rpe": 9
   }
 ]

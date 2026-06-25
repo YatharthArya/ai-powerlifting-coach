@@ -1,9 +1,10 @@
 const fs = require("fs");
+const { SESSIONS_FILE } = require("../config/paths");
 
 function readSessions() {
     return JSON.parse(
         fs.readFileSync(
-            "../database/sessions.json",
+            SESSIONS_FILE,
             "utf8"
         )
     );
@@ -11,7 +12,7 @@ function readSessions() {
 
 function writeSessions(sessions) {
     fs.writeFileSync(
-        "../database/sessions.json",
+        SESSIONS_FILE,
         JSON.stringify(sessions, null, 2)
     );
 }
