@@ -6,10 +6,18 @@ const {
     removeSession
 } = require("../services/sessionService");
 
+const {
+    successResponse,
+    errorResponse
+} = require("../utils/responseHelper");
+
 function testController(req, res) {
-    res.json({
-        message: "Controller working successfully!"
-    });
+
+    successResponse(
+        res,
+        "Controller working successfully!"
+    );
+
 }
 
 
@@ -17,10 +25,15 @@ function getAllSessions(req, res) {
 
     const sessions = getSessions();
 
-    res.json({
-        totalSessions: sessions.length,
-        sessions: sessions
-    });
+    successResponse(
+        res,
+        "Sessions fetched successfully!",
+        {
+            totalSessions: sessions.length,
+            sessions: sessions
+        }
+    );
+
 }
 
 
@@ -30,16 +43,20 @@ function createSession(req, res) {
 
     const result = addSession(session);
 
-    res.json({
-        message: "Session saved successfully!",
-        totalSessions: result.totalSessions,
-        savedSession: result.savedSession
-    });
+    successResponse(
+        res,
+        "Session saved successfully!",
+        {
+            totalSessions: result.totalSessions,
+            savedSession: result.savedSession
+        }
+    );
+
 }
 
 function updateSession(req, res) {
 
-    const sessionId = parseInt(req.params.id);
+    const sessionId = req.sessionId;
 
     const updatedSession = updateExistingSession(
         sessionId,
@@ -47,49 +64,73 @@ function updateSession(req, res) {
     );
 
     if (!updatedSession) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
+
+        return errorResponse(
+            res,
+            404,
+            "Session not found"
+        );
+
     }
 
-    res.json({
-        message: "Session updated successfully!",
-        updatedSession: updatedSession
-    });
+    successResponse(
+        res,
+        "Session updated successfully!",
+        {
+            updatedSession
+        }
+    );
+
 }
 
 function getSessionByIdController(req, res) {
 
-    const sessionId = parseInt(req.params.id);
+    const sessionId = req.sessionId;
+
     const session = getSessionById(sessionId);
 
     if (!session) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
+
+        return errorResponse(
+            res,
+            404,
+            "Session not found"
+        );
+
     }
 
-    res.json({
-        sessionId: sessionId,
-        session: session
-    });
+    successResponse(
+        res,
+        "Session fetched successfully!",
+        {
+            sessionId,
+            session
+        }
+    );
+
 }
 
 function deleteSession(req, res) {
 
-    const sessionId = parseInt(req.params.id);
+    const sessionId = req.sessionId;
 
     const deleted = removeSession(sessionId);
 
     if (!deleted) {
-        return res.status(404).json({
-            error: "Session not found"
-        });
+
+        return errorResponse(
+            res,
+            404,
+            "Session not found"
+        );
+
     }
 
-    res.json({
-        message: "Session deleted successfully!"
-    });
+    successResponse(
+        res,
+        "Session deleted successfully!"
+    );
+
 }
 
 module.exports = {

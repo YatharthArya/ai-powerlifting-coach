@@ -4,6 +4,8 @@ const router = express.Router();
 
 const validateSession = require("../middleware/validateSession");
 
+const parseSessionId = require("../middleware/parseSessionId");
+
 const {
     testController,
     getAllSessions,
@@ -20,6 +22,7 @@ router.get("/sessions", getAllSessions);
 
 router.get(
     "/session/:id",
+    parseSessionId,
     getSessionByIdController
 );
 
@@ -31,12 +34,14 @@ router.post(
 
 router.put(
     "/session/:id",
+    parseSessionId,
     validateSession,
     updateSession
 );
 
 router.delete(
     "/session/:id",
+    parseSessionId,
     deleteSession
 );
 
