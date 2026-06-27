@@ -2561,3 +2561,134 @@ Database
 Phase 1 completed successfully.
 
 The backend is now modular, maintainable, and ready for replacing the JSON data layer with a relational database in Phase 2.
+
+# Phase 2 - Day 21
+
+## Objective
+
+Prepare the backend for PostgreSQL by establishing a successful database connection while preserving the existing layered architecture.
+
+---
+
+## Work Completed
+
+### Project Management
+
+* Reconstructed the complete project state after conversation history inconsistency.
+* Created `PROJECT_STATE.md` to maintain a persistent snapshot of the current project status.
+
+### PostgreSQL
+
+* Verified PostgreSQL Server installation.
+* Verified pgAdmin configuration.
+* Fixed `psql` command by adding PostgreSQL to the system PATH.
+* Created application database:
+
+  * `powerlifting_coach`
+
+### Backend
+
+* Installed PostgreSQL Node.js driver (`pg`).
+* Added database configuration module:
+
+  * `backend/config/database.js`
+* Configured PostgreSQL connection pool.
+* Connected Express backend to PostgreSQL.
+* Verified connectivity using:
+
+```sql
+SELECT NOW();
+```
+
+### Verification
+
+Successfully started backend.
+
+Output:
+
+```
+Server is running on http://localhost:5000
+✅ PostgreSQL Connected Successfully!
+```
+
+---
+
+## Files Created
+
+```
+PROJECT_STATE.md
+
+backend/config/database.js
+```
+
+---
+
+## Files Modified
+
+```
+backend/index.js
+
+backend/package.json
+```
+
+(Dependency: pg)
+
+---
+
+## Architecture Status
+
+Current backend architecture:
+
+Client
+
+↓
+
+Routes
+
+↓
+
+Middleware
+
+↓
+
+Controllers
+
+↓
+
+Services
+
+↓
+
+Repositories
+
+↓
+
+PostgreSQL (Connection Ready)
+
+---
+
+## Key Decisions
+
+* Continue using layered architecture.
+* PostgreSQL access will remain inside the Repository layer.
+* Use PostgreSQL Pool instead of Client.
+* Delay `.env` refactoring until after connection verification.
+
+---
+
+## Day Result
+
+✅ PostgreSQL successfully integrated with the backend.
+
+Phase 2 infrastructure is now ready for relational database development.
+
+---
+
+## Next Day Preview
+
+Phase 2 – Day 22
+
+* Improve package.json scripts.
+* Move database credentials to `.env`.
+* Design relational database schema.
+* Create the first production table.
