@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const pool = require("./config/database");
 
 const errorHandler = require("./middleware/errorHandler");
 const sessionRoutes = require("./routes/sessionRoutes");
@@ -51,6 +52,15 @@ app.use("/api", sessionRoutes);
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+    try {
+        await pool.query("SELECT NOW()");
+
+        console.log("✅ PostgreSQL Connected Successfully!");
+    } catch (error) {
+        console.error("❌ PostgreSQL Connection Failed!");
+        console.error(error.message);
+    }
+})
