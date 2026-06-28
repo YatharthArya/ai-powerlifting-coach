@@ -2692,3 +2692,43 @@ Phase 2 – Day 22
 * Move database credentials to `.env`.
 * Design relational database schema.
 * Create the first production table.
+
+# Phase 0 — Day 22
+
+## Objective
+
+Begin the architectural design phase before implementing the PostgreSQL database schema.
+
+---
+
+## Work Completed
+
+* Created the dedicated `architecture/` directory.
+* Planned the complete architecture documentation structure.
+* Created `01-project-philosophy.md`.
+* Defined the long-term vision, mission, scientific methodology, and evidence-first philosophy.
+* Established the separation between system architecture documentation (`architecture/`) and developer documentation (`docs/`).
+* Renamed `docs/architecture.md` to `docs/backend-overview.md` to avoid duplication.
+
+---
+
+## Architectural Decisions
+
+* The project follows an Evidence-First Coaching methodology.
+* AI will never make programming decisions without supporting evidence.
+* Human coaching decisions remain explainable and traceable.
+* The project will support multiple athletes from the beginning.
+* Philosophy documents are considered foundational and future changes should be tracked through Architecture Decision Records (ADRs).
+
+---
+
+## Outcome
+
+The project now has a stable architectural foundation that will guide future database design, backend implementation, frontend development, rule engine construction, and AI integration.
+
+---
+
+## Next Task
+
+Create and document the complete System Lifecycle (`02-system-lifecycle.md`) before beginning database schema design.
+
