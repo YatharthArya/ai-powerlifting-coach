@@ -2731,4 +2731,48 @@ The project now has a stable architectural foundation that will guide future dat
 ## Next Task
 
 Create and document the complete System Lifecycle (`02-system-lifecycle.md`) before beginning database schema design.
+## Additional Architectural Discoveries
 
+During the design discussion, several foundational concepts emerged that will influence the remainder of the platform architecture.
+
+### New Architectural Principles
+
+* Decision Quality was established as the primary objective of the platform.
+* The platform distinguishes between verification and validation.
+* Knowledge is separated into Individual, Population, and Scientific levels.
+* Every decision must remain fully traceable back to the evidence that produced it.
+* Human decision-making remains the final authority.
+
+### Key Discovery
+
+The platform should not optimize decisions directly.
+
+Instead, it should improve a chain of quality:
+
+Reality
+
+↓
+
+Observation Quality
+
+↓
+
+Evidence Quality
+
+↓
+
+Decision Quality
+
+↓
+
+Outcome Quality
+
+↓
+
+Knowledge Quality
+
+↓
+
+Improved Reality
+
+This quality chain will become a guiding principle for future architecture decisions, database design, AI integration, and research methodology.
