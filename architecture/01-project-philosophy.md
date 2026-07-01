@@ -1,3 +1,23 @@
+## TODO
+
+Update after completion of 00-first-principles.md
+
+Topics to integrate:
+
+- Reality–Observation Gap
+- Context Layer
+- Measurement Quality
+- Observation Quality
+- Evidence Thresholds
+- Dynamic Evidence Hierarchy
+- Decision Confidence
+- Knowledge Scope
+- Knowledge Promotion
+- Human Feedback Loop
+- Decision-Making Capacity
+
+
+
 # Evidence-Based Performance Intelligence Platform
 
 ## Project Philosophy

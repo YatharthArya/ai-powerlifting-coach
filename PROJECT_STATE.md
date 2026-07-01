@@ -136,26 +136,26 @@ Improving Decision Quality through Validated Evidence.
 
 ## Current Research Questions
 
-* What is the smallest unit of truth in the platform?
-* How should observations become evidence?
-* How should evidence be verified?
-* How should hypotheses be validated?
-* How should uncertainty be represented?
-* How should coaching decisions remain explainable?
-* How should knowledge continuously evolve?
+- How can the Reality–Observation Gap be minimized?
+- How should observation quality be evaluated?
+- How should evidence thresholds vary according to decision risk?
+- How should knowledge evolve across individual, population, and scientific levels?
+- How should the platform improve long-term human decision-making capacity?
 
 ---
 
 # Core Architectural Principles
 
-* Architecture before implementation.
-* Evidence before decisions.
-* Validation before programming changes.
-* Human approval before execution.
-* Outcome evaluation after every decision.
-* AI never bypasses evidence.
-* Every decision must remain explainable and traceable.
-* Knowledge continuously evolves through validated outcomes.
+- Architecture before implementation.
+- Reality is independent of observation.
+- Context gives observations meaning.
+- Evidence before decisions.
+- Validation before programming changes.
+- Human judgment remains the final authority.
+- Every decision must remain explainable and traceable.
+- Outcomes improve future decisions through learning.
+- Knowledge continuously evolves through validated evidence.
+- The platform exists to improve human decision-making capacity.
 
 ---
 
