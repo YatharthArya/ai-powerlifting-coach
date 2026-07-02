@@ -23,7 +23,7 @@ Topics to integrate:
 ## Project Philosophy
 
 ---
-> "We maximize human potential by maximizing the quality of decisions."
+"Better Decisions. Better Performance. Closer to Human Potential."
 
 # 1. Vision
 

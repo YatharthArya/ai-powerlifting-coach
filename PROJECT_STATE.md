@@ -1,6 +1,6 @@
 # AI Powerlifting Coach
 
-> **"We maximize human potential by maximizing the quality of decisions."**
+"Better Decisions. Better Performance. Closer to Human Potential."
 
 ---
 
