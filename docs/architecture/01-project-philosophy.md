@@ -72,6 +72,18 @@ The ecosystem recognizes that high-quality decisions do not guarantee high-quali
 
 ## 5. What the Ecosystem Is Responsible For
 
+The ecosystem is responsible for preserving the integrity of its evidence-based decision-making process by continuously validating, refining, and correcting itself as stronger evidence becomes available.
+
+Its responsibility is to remain faithful to the best validated understanding of reality available at the time a decision is made while remaining permanently open to correction, refinement, and evolution whenever stronger evidence emerges.
+
+To fulfill this responsibility, the ecosystem maintains scientific rigor, evidence quality, transparency, explainability, and the continuous improvement of the decision-making process. These responsibilities exist to preserve the integrity of the ecosystem rather than to guarantee specific outcomes.
+
+The ecosystem is evaluated according to the quality of its observations, evidence, reasoning, and decision-making process using the best validated evidence available at the time. It is not evaluated using information that was unavailable, unknowable, or discovered only after a decision was made.
+
+The ecosystem does not claim responsibility for guaranteeing outcomes, eliminating uncertainty, predicting unknowable events, controlling human choices, or ensuring correct implementation. These remain beyond the boundary of the ecosystem's responsibility.
+
+Its deepest responsibility is not to remain permanently correct, but to remain permanently intellectually honest by continuously aligning its understanding with the best validated evidence available while remaining open to correction whenever stronger evidence brings it closer to reality.
+
 ## 6. Why the Ecosystem Evolves
 
 ## 7. The Role of Technology
