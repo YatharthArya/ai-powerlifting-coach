@@ -199,6 +199,20 @@ Final Decision
 
 The platform should determine the required evidence threshold based on the type and consequence of the decision rather than applying a fixed rule.
 
+## Emerging Questions
+
+Recent architectural discussions suggest that evidence thresholds alone may not fully explain decision justification.
+
+Current discussions indicate that the justification for action may also depend on:
+
+- Consequences of action
+- Consequences of inaction
+- Uncertainty
+- Risk
+- Human values
+- Decision context
+
+Further architectural review is required before modifying Principle 4.
 
 ---
 
@@ -297,8 +311,6 @@ Continue discussion.
 
 
 ---
-
-# Principle 7
 
 # Principle 7 — Decision Evaluation
 
