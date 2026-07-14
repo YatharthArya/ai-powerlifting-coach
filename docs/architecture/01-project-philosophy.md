@@ -10,7 +10,7 @@ Together, these documents establish a clear separation between permanent philoso
 
 The First Principles define **what the platform believes**.
 
-The Project Philosophy defines **how those beliefs guide the design, development, evolution, and future direction of the platform**.
+The Project Philosophy extends those constitutional principles by defining the ecosystem's identity, purpose, governance, evolution, and long-term architectural direction while remaining fully subordinate to the constitutional foundation.
 
 This document shall remain consistent with the First Principles established in **00-first-principles.md**.
 
@@ -38,9 +38,9 @@ This ecosystem is not defined by a particular technology, software platform, art
 
 The ecosystem embodies a commitment to continuously improve the quality of human decision-making by pursuing increasingly reliable understanding of reality through validated evidence.
 
-It brings together scientific philosophy, evidence-based methodology, structured frameworks, technology, human expertise, and continuously evolving knowledge into a unified system that supports better decisions while remaining open to refinement as stronger evidence becomes available.
+It brings together scientific philosophy, evidence-based methodology, structured frameworks, technology, human expertise, constitutional governance, and continuously evolving knowledge into a unified system that supports better decisions while remaining open to refinement as stronger evidence becomes available.
 
-Its identity does not arise from any single component but from the continuous interaction between them. Scientific philosophy guides methodology, methodology guides implementation, implementation generates observations, observations become validated evidence, evidence supports decisions, decisions produce outcomes, and validated outcomes contribute to the continuous evolution of knowledge.
+Its identity does not arise from any single component but from the continuous interaction between them. Its identity is preserved by maintaining the integrity of its foundational commitment rather than the permanence of any particular methodology, technology, implementation, or organizational structure. Scientific philosophy guides methodology, methodology guides implementation, implementation generates observations, observations become validated evidence, evidence supports decisions, decisions produce outcomes, and validated outcomes contribute to the continuous evolution of knowledge.
 
 The ecosystem is therefore not a software platform, an artificial intelligence system, or a collection of tools. It is a continuously evolving scientific ecosystem whose purpose is to preserve knowledge, improve understanding, support better human decisions, and advance evidence-based practice through continuous learning.
 
@@ -52,7 +52,9 @@ This commitment recognizes that better decisions do not emerge from intuition, a
 
 This commitment extends beyond producing better decisions today. Its purpose is to continuously improve humanity's ability to make better decisions tomorrow by preserving knowledge, encouraging critical evaluation, supporting transparent reasoning, and promoting continuous learning.
 
-Every element of the ecosystem exists in service of this single commitment.Evidence quality, transparency, explainability, knowledge generation, continuous learning, scientific rigor, and knowledge evolution are not independent objectives but necessary consequences of continuously improving human decision-making capacity.
+Every element of the ecosystem exists in service of this single commitment.
+
+Evidence quality, transparency, explainability, knowledge generation, continuous learning, scientific rigor, and knowledge evolution are not independent objectives but necessary consequences of continuously improving human decision-making capacity.
 
 Because reality continuously evolves and human understanding remains incomplete, this commitment can never be considered finished. The ecosystem therefore remains permanently open to refinement, challenge, and improvement whenever stronger validated evidence becomes available.
 
@@ -86,22 +88,54 @@ Its deepest responsibility is not to remain permanently correct, but to remain p
 
 ## 6. Why the Ecosystem Evolves
 
+The ecosystem evolves because reality continuously exceeds current human understanding. As new observations are made, stronger evidence emerges, better explanations are developed, and previous understanding may require refinement.
+
+Remaining unchanged is therefore neither evidence of correctness nor an objective of the ecosystem. Instead, continuous refinement is considered a necessary consequence of pursuing increasingly reliable understanding of reality.
+
+The ecosystem preserves its identity by maintaining the integrity of its foundational commitment rather than preserving any particular methodology, technology, architectural model, implementation, or organizational structure. These components are expected to evolve whenever stronger validated evidence demonstrates a better approach.
+
+Every revision to the ecosystem's philosophy, methodology, or architecture should occur through transparent evaluation, constitutional validation, and scientific review. This ensures that change strengthens the ecosystem's understanding while preserving the integrity of its foundational commitment.
+
+The ecosystem does not evolve because change itself is valuable. It evolves because continuous refinement provides the most reliable path toward improving human understanding, decision-making, and evidence-based practice over time.
+
 ## 7. The Role of Technology
 
+Technology exists to support the ecosystem's foundational commitment rather than define it.
+
+Software, artificial intelligence, machine learning, databases, sensors, and future technologies provide mechanisms for collecting observations, preserving knowledge, generating evidence, supporting transparent decision-making, and enabling continuous learning at a scale beyond unaided human capability.
+
+The ecosystem does not depend upon any specific technology. Technologies may be replaced, improved, or removed as stronger alternatives emerge without changing the ecosystem's identity or purpose. Their value is determined solely by how effectively they strengthen the ecosystem's ability to improve human decision-making through validated evidence.
+
+Artificial intelligence and machine learning are therefore understood as supporting components of the ecosystem rather than independent authorities. They assist in processing information, identifying patterns, generating evidence-supported recommendations, and improving consistency while remaining governed by the ecosystem's scientific methodology, constitutional principles, and human oversight.
+
+Technology is expected to continuously evolve alongside scientific understanding. Its purpose is not to replace human judgment, but to extend human capability by improving the quality, transparency, traceability, scalability, and consistency of evidence-based decision-making.
+
 ## 8. The Role of Human Judgment
+
+Human judgment remains an essential component of the ecosystem because validated evidence alone is insufficient to resolve every decision.
+
+Evidence informs decisions by improving understanding, reducing uncertainty, and increasing confidence, but decisions frequently require the integration of factors that extend beyond currently available evidence. Human goals, values, ethics, contextual understanding, constraints, risk tolerance, and responsibility continue to influence how evidence is interpreted and applied.
+
+The ecosystem therefore exists to strengthen human judgment rather than replace it. Its purpose is to provide transparent reasoning, validated evidence, explainable recommendations, and continuously evolving knowledge that enable humans to make better-informed decisions while remaining responsible for their application.
+
+Human judgment and validated evidence are complementary rather than competing components of evidence-based decision-making. Neither replaces the other. Evidence improves the quality of judgment, while human judgment remains necessary for interpreting evidence within the context of goals, ethics, uncertainty, constraints, and responsibility.
+
+Human decisions, including agreement, disagreement, and justified overrides of ecosystem recommendations, are not treated as failures of the ecosystem. Instead, they become additional observations that contribute to future learning, evaluation, and knowledge evolution.
+
+The long-term objective of the ecosystem is not autonomous decision-making, but the continuous improvement of human decision-making capacity through transparent collaboration between validated evidence, technology, and human judgment.
 
 
 # Vision
 
-To build the world's most evidence-driven human performance decision platform by integrating coaching methodology, structured data, sports science, software engineering, and artificial intelligence into a transparent ecosystem that continuously improves the quality of performance decisions.
+To establish the world's most trusted evidence-based human performance ecosystem that continuously improves human decision-making through validated evidence, scientific integrity, and continuous learning.
 
 The platform aims to support athletes, coaches, strength and conditioning professionals, sports scientists, physiotherapists, researchers, and performance organizations through validated evidence rather than assumptions.
 
 The long-term vision is not to replace human coaching, but to create a system that continuously improves human decision-making, generates new knowledge, and advances evidence-based practice across strength and performance disciplines.
 
-# 2. Mission
+# Mission
 
-The mission of this project is to transform performance decision-making from intuition-driven practice into an evidence-driven, transparent, and continuously improving process.
+The mission of this ecosystem is to improve human performance decision-making by transforming observations into validated evidence, evidence into knowledge, and knowledge into transparent, explainable, and continuously improving decisions.
 
 The platform collects structured observations, verifies evidence, supports coaching decisions, evaluates outcomes, and continuously expands its knowledge through validated experience.
 
@@ -109,3 +143,18 @@ Rather than replacing professionals, the platform exists to increase the quality
 
 Every recommendation produced by the system should be explainable, supported by evidence, measurable through outcomes, and open to continuous refinement as new knowledge becomes available.
 
+---
+
+# Status
+
+**Status:** 🔒 Frozen
+
+**Version:** v1.0
+
+## Notes
+
+This document represents the current permanent philosophical foundation of the ecosystem.
+
+It extends the constitutional principles established in **00-first-principles.md** and defines the ecosystem's identity, purpose, governance, evolution, and long-term direction.
+
+This document may be revised only through the constitutional governance process after sufficient architectural review and validation demonstrates that a revision strengthens the ecosystem's alignment with reality and its foundational commitment.
