@@ -20,7 +20,7 @@ Powerlifting serves as the first domain for validating the methodology before ex
 
 **Current Phase:** Phase 0 – System Blueprint
 
-**Current Development Day:** Day 31
+**Current Development Day:** Day 32
 
 **Project Status:** 🟡 Architecture Design
 
@@ -62,11 +62,15 @@ Discover and validate the operational architecture that systematically transform
 
 ### Current Research
 
+Current architectural investigations include:
+
 - Fundamental purpose of the Evidence Lifecycle.
+- Operational trigger of the Evidence Lifecycle.
 - Architectural boundaries of the lifecycle.
-- Relationship between Observation, Information, Context, Evidence, Hypothesis, and Knowledge.
+- Relationship between Reality, Observation, Information, Context, Evidence, Hypothesis, and Knowledge.
 - Knowledge Creation vs Knowledge Utilization.
-- Investigation into whether the lifecycle consists of a single transformation pipeline or multiple reasoning pathways.
+- Investigation into multiple valid reasoning pathways.
+- Distinction between architectural objects and architectural events.
 
 ---
 
@@ -166,12 +170,14 @@ Discover the fundamental operational architecture of the Evidence Lifecycle befo
 
 ## Current Research Questions
 
-- What is the fundamental purpose of the Evidence Lifecycle?
+- What legitimately triggers the Evidence Lifecycle?
+- Where does the Evidence Lifecycle operationally begin and end?
 - What are the fundamental architectural objects of the lifecycle?
-- Where does the Evidence Lifecycle begin and end?
-- How are Observation, Information, Context, Evidence, Knowledge, and Hypothesis related?
-- Does the lifecycle represent a single linear process or multiple valid reasoning pathways?
+- Which architectural events trigger state transitions?
+- How are Reality, Observation, Information, Context, Evidence, Hypothesis, and Knowledge related?
+- Does the lifecycle support multiple valid reasoning pathways?
 - Where is the architectural boundary between knowledge creation and knowledge utilization?
+
 ---
 
 # Core Architectural Principles
@@ -210,24 +216,17 @@ Continue architectural discovery for:
 
 Current Focus
 
-Challenge the architectural relationships between:
+Challenge:
 
-- Observation
-- Information
-- Context
-- Evidence
-- Hypothesis
-- Knowledge
+- Operational trigger of the Evidence Lifecycle.
+- Relationship between uncertainty, questions, investigation, evidence, and knowledge.
+- Architectural objects versus architectural events.
+- Multiple reasoning pathways.
+- The role of hypotheses within the Evidence Lifecycle.
 
 Primary Objective
 
-Determine whether the Evidence Lifecycle is:
-
-- A single transformation pipeline
-- Multiple reasoning pathways
-- The complete knowledge-generation architecture
-
-before beginning formal documentation.
+Determine the operational beginning of the Evidence Lifecycle before designing its transformations and formal architecture.
 
 # Architecture Status
 
@@ -259,7 +258,7 @@ Current Focus
 
 Primary Objective
 
-Discover and validate the operational architecture that transforms observations into validated knowledge before documenting the lifecycle.
+Discover and validate the operational architecture, triggers, boundaries, and transformations of the Evidence Lifecycle before formal documentation begins.
 
 Current Deliverable
 
