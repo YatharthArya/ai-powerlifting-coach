@@ -4405,3 +4405,107 @@ Continue challenging:
 - The relationship between uncertainty, questions, hypotheses, and evidence.
 - Architectural events versus architectural objects.
 - The operational beginning of the lifecycle before designing its complete transformation architecture.
+
+
+---
+
+# Development Log — Day 33
+
+## Objective
+
+Begin structured architectural discovery for the Evidence Lifecycle by establishing Discovery 005 and investigating the operational entry point of the lifecycle.
+
+---
+
+# Major Architectural Progress
+
+## Discovery 005
+
+Created:
+
+Discovery 005 – Evidence Lifecycle Foundations
+
+to preserve emerging architectural hypotheses prior to integration into the permanent Evidence Lifecycle documentation.
+
+---
+
+## Operational Boundary
+
+Continued investigating the operational beginning of the Evidence Lifecycle.
+
+Current hypothesis:
+
+The lifecycle does not begin with reality, uncertainty, or observation alone.
+
+Instead, its operational entry point is the governed transformation of observations into persistent information.
+
+This hypothesis remains under review.
+
+---
+
+## Preconditions versus Lifecycle
+
+Distinguished:
+
+Preconditions:
+
+- Recognized uncertainty
+- Question formulation
+- Sufficient investigable framework
+
+from the operational Evidence Lifecycle itself.
+
+Current hypothesis suggests these conditions enable investigation but remain outside the lifecycle.
+
+---
+
+## Information Architecture
+
+Refined the distinction between:
+
+- Observation
+- Information
+
+Current hypothesis:
+
+Observation is the perception of reality.
+
+Information is the persistent representation of one or more observations.
+
+Information should preserve representational fidelity, including uncertainty, rather than prematurely forcing certainty.
+
+---
+
+## Architectural Categories
+
+Continued separating:
+
+- Architectural Objects
+- Architectural Events
+- Architectural Resources
+- Architectural Transformations
+
+These categories remain under architectural review.
+
+---
+
+# Current Status
+
+Discovery 005
+
+🟡 Under Review
+
+Evidence Lifecycle
+
+🟡 Architectural Discovery
+
+---
+
+# Next Session
+
+Continue Discovery 005 by challenging:
+
+- Information architecture.
+- Information quality.
+- Observation → Information transformation.
+- Information → Evidence transformation.
