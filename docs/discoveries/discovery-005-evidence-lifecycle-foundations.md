@@ -67,16 +67,55 @@ Current architectural questions include:
 
 This area remains under active architectural review.
 
+### Investigation (Working Hypothesis)
+
+Current discussions suggest that evidence formation occurs within the bounded context of an investigation.
+
+An investigation is currently hypothesized to represent the bounded reasoning context within which observations are transformed into information, information into evidence, and evidence into an investigation outcome.
+
+Current architectural questions include:
+
+- What precisely defines the boundary of an investigation?
+- What initiates an investigation?
+- What terminates an investigation?
+- Is an investigation best understood as an architectural object, process, context, or another abstraction?
+- How should investigational objectives relate to investigations?
+
+This area remains under active architectural review.
+
+### Investigation Outcome (Working Hypothesis)
+
+Current discussions suggest that the operational output of the Evidence Lifecycle may be an investigation outcome rather than knowledge itself.
+
+This hypothesis remains under review.
+
+Current architectural questions include:
+
+- What is the precise responsibility of an investigation outcome?
+- Is it distinct from conclusions, findings, claims, or assessments?
+- Should the Evidence Lifecycle terminate with an investigation outcome?
+- Which downstream subsystem should consume investigation outcomes?
+
+Further architectural validation is required before formal adoption.
+
 ## Current Review Focus
 
 Current architectural discussions are primarily investigating:
 
-- The operational trigger of the Evidence Lifecycle.
-- The boundary between preconditions and the lifecycle itself.
-- The Observation → Information transformation.
+- Investigation as the bounded reasoning context of the Evidence Lifecycle.
+- The operational boundary of a single investigation.
 - The Information → Evidence transformation.
-- The nature of evidential relationships.
-- The distinction between information, evidence, and knowledge.
-- The architectural role of investigational objectives.
-- The role of justification in evidence formation.
-- The role of uncertainty throughout the Evidence Lifecycle.
+- The role of evidential relationships.
+- The relationship between investigations and investigational objectives.
+- The architectural responsibility of investigation outcomes.
+- The distinction between the Evidence Lifecycle and broader ecosystem architecture.
+
+### Epistemic Boundary (Working Hypothesis)
+
+Current discussions suggest that the Evidence Lifecycle is responsible for applying epistemic foundations rather than establishing them.
+
+Foundational principles governing legitimate reasoning, scientific inquiry, and knowledge formation belong to the Constitution (or another higher-level epistemic layer).
+
+The Evidence Lifecycle operates within these foundations to transform information into evidence and knowledge but does not attempt to justify the foundations themselves.
+
+This boundary remains under architectural review.

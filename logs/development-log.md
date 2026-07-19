@@ -4597,3 +4597,66 @@ Continue Discovery 005 by challenging:
 - Investigational objectives.
 - Justification within evidence formation.
 - Responsibilities of evidence within the Evidence Lifecycle.
+
+
+# Development Log — Day 35
+
+## Objective
+
+Continue Discovery 005 by investigating the Information → Evidence transformation and the emerging architecture surrounding investigations.
+
+---
+
+## Major Architectural Progress
+
+- Continued challenging the Information → Evidence transformation through multiple scientific and investigative scenarios.
+- Identified Investigation as the current bounded reasoning context within which evidence formation occurs.
+- Proposed Investigation Outcome as the current working hypothesis for the operational output of the Evidence Lifecycle.
+- Discovered that architectural discussions had unintentionally expanded beyond the Evidence Lifecycle into the broader ecosystem architecture.
+- Re-established subsystem boundaries by distinguishing:
+  - Evidence Lifecycle
+  - Knowledge System
+  - Decision Engine
+  - Overall Ecosystem
+- Introduced an architectural dependency strategy to prevent downstream concepts from being explored before upstream concepts are sufficiently stabilized.
+
+---
+
+## Current Status
+
+Discovery 005 remains under architectural review.
+
+Stable areas:
+
+- Observation
+- Information
+- Observation → Information transformation
+
+Working hypotheses:
+
+- Information → Evidence transformation
+- Investigation
+- Investigation Outcome
+
+Deferred until later discoveries:
+
+- Validation
+- Knowledge Management
+- Decision Engine
+- Ecosystem Learning Loop
+
+---
+
+## Next Session
+
+Formally investigate Investigation as the next architectural dependency.
+
+Focus on:
+
+- Definition
+- Responsibility
+- Operational boundaries
+- Inputs
+- Outputs
+
+Avoid introducing downstream subsystems until Investigation is sufficiently stabilized.

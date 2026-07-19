@@ -20,7 +20,7 @@ Powerlifting serves as the first domain for validating the methodology before ex
 
 **Current Phase:** Phase 0 – System Blueprint
 
-**Current Development Day:** Day 34
+**Current Development Day:** Day 35
 
 **Project Status:** 🟡 Architecture Design
 
@@ -44,12 +44,12 @@ Design, validate, and formalize the complete scientific and software architectur
 
 Completed:
 
-- Further validated the Observation → Information transformation as the operational gateway into the Evidence Lifecycle.
-- Challenged the distinction between Information and Evidence through multiple scientific, medical, and investigative scenarios.
-- Established the current working hypothesis that information is not inherently evidence but participates in evidential relationships.
-- Identified the investigational objective as a potential architectural dependency for evidence evaluation.
-- Continued separating architectural responsibilities from implementation concerns.
-- Preserved emerging hypotheses for continued architectural review.
+- Identified investigation as the current architectural context within which evidence formation occurs.
+- Began formal investigation of investigation boundaries and responsibilities.
+- Established the working hypothesis that the operational output of the Evidence Lifecycle may be an investigation outcome.
+- Distinguished the internal architecture of the Evidence Lifecycle from the broader ecosystem architecture.
+- Identified architectural scope creep into Knowledge, Validation, and Decision Engine discussions.
+- Established an architectural dependency strategy to prevent introducing downstream concepts before upstream concepts are stabilized.
 
 ### Current Milestone
 
@@ -63,16 +63,15 @@ Discover and validate the operational architecture that systematically transform
 
 Current architectural investigations include:
 
-- Fundamental purpose of the Evidence Lifecycle.
-- Operational entry point of the Evidence Lifecycle.
-- Preconditions versus operational lifecycle boundaries.
+- Operational boundaries of the Evidence Lifecycle.
+- Investigation as the bounded reasoning context.
 - Observation → Information transformation.
 - Information → Evidence transformation.
-- Relationship between Information, Evidence, Knowledge, and Investigational Objectives.
-- Architectural responsibility of evidential relationships.
-- Information fidelity, uncertainty preservation, and traceability.
-- Knowledge Creation versus Knowledge Utilization.
-- Distinction between architectural objects, events, resources, and transformations.
+- Evidential relationships and justification.
+- Investigational objectives.
+- Investigation outcomes.
+- Architectural dependency management within Discovery 005.
+- Separation between Evidence Lifecycle architecture and overall ecosystem architecture.
 
 ---
 
@@ -172,16 +171,13 @@ Discover the fundamental operational architecture of the Evidence Lifecycle befo
 
 ## Current Research Questions
 
-- What are the operational preconditions of the Evidence Lifecycle?
-- Where is the true operational entry point of the Evidence Lifecycle?
-- How should observations be transformed into persistent information?
-- What distinguishes Information from Evidence and Knowledge?
-- Is evidence an intrinsic property of information or a justified relationship?
-- What architectural object defines the objective of an investigation?
-- Where should investigational objectives originate within the overall ecosystem?
-- Which architectural objects, events, resources, and transformations define the lifecycle?
-- How should uncertainty be preserved throughout the lifecycle?
-- Where is the architectural boundary between knowledge creation and knowledge utilization?
+- What defines the operational boundary of an investigation?
+- What initiates and terminates an investigation?
+- What distinguishes information from evidence?
+- What constitutes a justified evidential relationship?
+- How should investigational objectives relate to investigations?
+- What is the operational output of the Evidence Lifecycle?
+- Where is the architectural boundary between the Evidence Lifecycle and downstream ecosystem components?
 
 ---
 
@@ -219,17 +215,19 @@ Continue Discovery 005 – Evidence Lifecycle Foundations
 
 Current Focus
 
-Challenge:
-
-- Information → Evidence transformation.
-- Nature of evidential relationships.
-- Investigational objectives and their architectural role.
-- Justified relationships between information and investigational objectives.
-- Architectural responsibilities of evidence.
+Complete Investigation before introducing additional architectural concepts.
 
 Primary Objective
 
-Challenge and validate the Information → Evidence transformation before formalizing the Evidence Lifecycle architecture.
+Formally define:
+
+- Investigation
+- Investigation boundaries
+- Investigation responsibility
+- Investigation inputs
+- Investigation outputs
+
+Only after Investigation is sufficiently stable should architectural work continue toward Investigation Outcome.
 
 # Architecture Status
 
