@@ -50,28 +50,45 @@ Only hypotheses that survive review will later be integrated into:
 - Information is not inherently evidence.
 - Information participates in evidential relationships only within the context of an investigation.
 - Evidence does not arise from information alone but requires an explicit relationship between information and what is being investigated.
-- The nature of the investigational object (e.g., question, hypothesis, claim, or higher-level abstraction) remains under architectural review.
+- The precise architectural nature of the investigational objective remains under review.
 - An evidential relationship appears to require explicit justification explaining why the information is relevant.
 - Evidence is currently hypothesized to be a justified relationship rather than an intrinsic property of information.
 
 ### Investigational Objective (Under Review)
 
-Current discussions suggest that evidence cannot exist independently but always exists relative to something being investigated.
+Current discussions suggest that an investigational objective should be treated as a distinct architectural concept rather than simply a general objective.
+
+Evidence formation appears to require a clearly defined investigational objective before an investigation can begin.
+
+Current working hypotheses include:
+
+- An investigation is organized around exactly one investigational objective.
+- Multiple measurements, observations, analyses, and evidence objects may contribute to a single investigational objective.
+- Multiple independent investigational objectives naturally give rise to multiple investigations rather than a single investigation with multiple responsibilities.
+- Changing the investigational objective is currently hypothesized to terminate the current investigation and initiate a new investigation.
+- Without an investigational objective, observations may become information, but no investigation exists.
+- Investigational objectives are currently hypothesized to define the reasoning responsibility of an investigation rather than the specific reasoning method employed.
 
 Current architectural questions include:
 
-- Is the objective of an investigation fundamentally a question, hypothesis, claim, or another architectural object?
-- Do these represent distinct lifecycle objects or different expressions of a shared architectural responsibility?
-- Where does the investigational objective originate relative to the Evidence Lifecycle?
-- Should the Evidence Lifecycle consume investigational objectives or generate them?
+- What is the minimum information required for something to qualify as an investigational objective?
+- Should investigational objectives be defined by propositions, questions, hypotheses, uncertainties, or another architectural abstraction?
+- Is the responsibility of an investigational objective to define a bounded uncertainty rather than a specific representation?
+- What information is intrinsic to an investigational objective versus investigation context?
+- Can an investigational objective exist prior to the creation of an investigation?
+- Does one investigation always produce exactly one investigation outcome?
 
 This area remains under active architectural review.
 
 ### Investigation (Working Hypothesis)
 
-Current discussions suggest that evidence formation occurs within the bounded context of an investigation.
+Current discussions suggest that evidence formation occurs within the bounded reasoning activity of an investigation.
 
-An investigation is currently hypothesized to represent the bounded reasoning context within which observations are transformed into information, information into evidence, and evidence into an investigation outcome.
+An investigation is currently hypothesized to represent the bounded reasoning activity organized around exactly one investigational objective.
+
+Multiple observations, information objects, evidence relationships, analyses, and reasoning steps may participate within a single investigation provided they contribute toward the same investigational objective.
+
+Independent investigational objectives are currently hypothesized to produce separate investigations rather than expanding the responsibility of an existing investigation.
 
 Current architectural questions include:
 
@@ -80,6 +97,7 @@ Current architectural questions include:
 - What terminates an investigation?
 - Is an investigation best understood as an architectural object, process, context, or another abstraction?
 - How should investigational objectives relate to investigations?
+- Can investigations branch, merge, pause, or resume while preserving architectural identity?
 
 This area remains under active architectural review.
 
@@ -102,11 +120,13 @@ Further architectural validation is required before formal adoption.
 
 Current architectural discussions are primarily investigating:
 
-- Investigation as the bounded reasoning context of the Evidence Lifecycle.
+- Investigation as the bounded reasoning activity of the Evidence Lifecycle.
 - The operational boundary of a single investigation.
 - The Information → Evidence transformation.
 - The role of evidential relationships.
-- The relationship between investigations and investigational objectives.
+- The architectural definition of investigational objectives.
+- The relationship between investigational objectives and investigations.
+- Investigation identity and responsibility boundaries.
 - The architectural responsibility of investigation outcomes.
 - The distinction between the Evidence Lifecycle and broader ecosystem architecture.
 

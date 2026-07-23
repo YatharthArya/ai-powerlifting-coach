@@ -20,7 +20,7 @@ Powerlifting serves as the first domain for validating the methodology before ex
 
 **Current Phase:** Phase 0 – System Blueprint
 
-**Current Development Day:** Day 35
+**Current Development Day:** Day 36
 
 **Project Status:** 🟡 Architecture Design
 
@@ -40,16 +40,19 @@ Design, validate, and formalize the complete scientific and software architectur
 
 ### Completed Today
 
+### Completed Today
+
 ✅ Continued Discovery 005 – Evidence Lifecycle Foundations
 
 Completed:
 
-- Identified investigation as the current architectural context within which evidence formation occurs.
-- Began formal investigation of investigation boundaries and responsibilities.
-- Established the working hypothesis that the operational output of the Evidence Lifecycle may be an investigation outcome.
-- Distinguished the internal architecture of the Evidence Lifecycle from the broader ecosystem architecture.
-- Identified architectural scope creep into Knowledge, Validation, and Decision Engine discussions.
-- Established an architectural dependency strategy to prevent introducing downstream concepts before upstream concepts are stabilized.
+- Refined the relationship between investigations and investigational objectives.
+- Established the working hypothesis that one investigation is organized around exactly one investigational objective.
+- Distinguished multiple measurements from multiple investigational objectives.
+- Established the working hypothesis that changing an investigational objective terminates the current investigation and initiates a new investigation.
+- Established that observations and information may exist without an investigation, but investigations cannot exist without an investigational objective.
+- Began investigating the architectural nature of investigational objectives rather than treating them as general objectives.
+- Introduced the working hypothesis that investigational objectives may define bounded uncertainties rather than specific representations, pending further architectural challenge.
 
 ### Current Milestone
 
@@ -63,12 +66,12 @@ Discover and validate the operational architecture that systematically transform
 
 Current architectural investigations include:
 
-- Operational boundaries of the Evidence Lifecycle.
-- Investigation as the bounded reasoning context.
+- Investigational objectives.
+- Investigation identity.
+- Investigation boundaries.
 - Observation → Information transformation.
 - Information → Evidence transformation.
 - Evidential relationships and justification.
-- Investigational objectives.
 - Investigation outcomes.
 - Architectural dependency management within Discovery 005.
 - Separation between Evidence Lifecycle architecture and overall ecosystem architecture.
@@ -171,13 +174,13 @@ Discover the fundamental operational architecture of the Evidence Lifecycle befo
 
 ## Current Research Questions
 
-- What defines the operational boundary of an investigation?
+- What is the minimum information required for something to qualify as an investigational objective?
+- What is the architectural responsibility of an investigational objective?
+- What defines the identity of an investigation?
 - What initiates and terminates an investigation?
 - What distinguishes information from evidence?
 - What constitutes a justified evidential relationship?
-- How should investigational objectives relate to investigations?
 - What is the operational output of the Evidence Lifecycle?
-- Where is the architectural boundary between the Evidence Lifecycle and downstream ecosystem components?
 
 ---
 
@@ -215,19 +218,21 @@ Continue Discovery 005 – Evidence Lifecycle Foundations
 
 Current Focus
 
-Complete Investigation before introducing additional architectural concepts.
+Attack and validate the concept of the Investigational Objective before finalizing the Investigation architecture.
 
 Primary Objective
 
-Formally define:
+Formally investigate:
 
-- Investigation
+- Investigational Objective
+- Investigation identity
 - Investigation boundaries
 - Investigation responsibility
-- Investigation inputs
-- Investigation outputs
+- Relationship between investigational objectives and investigations
 
-Only after Investigation is sufficiently stable should architectural work continue toward Investigation Outcome.
+Only after the investigational objective is sufficiently stable should Investigation be finalized.
+
+---
 
 # Architecture Status
 

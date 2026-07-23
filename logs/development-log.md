@@ -4660,3 +4660,101 @@ Focus on:
 - Outputs
 
 Avoid introducing downstream subsystems until Investigation is sufficiently stabilized.
+
+
+# Development Log — Day 36
+
+Date: Phase 0 – Day 36
+
+## Objective
+
+Continue Discovery 005 by challenging the architectural foundations of Investigation and Investigational Objective before formalizing the Evidence Lifecycle.
+
+---
+
+## Major Architectural Progress
+
+### Investigational Objective
+
+Architectural focus shifted from defining Investigation to defining the concept that gives rise to an Investigation.
+
+Current working hypotheses established:
+
+- An investigation is organized around exactly one investigational objective.
+- Multiple observations, information objects, evidence relationships, analyses, and measurements may contribute to a single investigational objective.
+- Multiple independent investigational objectives naturally produce multiple investigations rather than expanding the responsibility of a single investigation.
+- Changing an investigational objective is currently hypothesized to terminate the current investigation and initiate a new investigation.
+- Without an investigational objective, observations may become information, but no investigation exists.
+
+---
+
+### Investigation Architecture
+
+The understanding of Investigation was refined.
+
+Rather than treating Investigation as a generic context, process, or object, current discussions suggest that it represents a bounded reasoning activity organized around a single investigational objective.
+
+This refinement significantly clarified investigation identity and responsibility boundaries.
+
+---
+
+### Architectural Methodology
+
+Current research increasingly focuses on identifying:
+
+- architectural responsibilities,
+- identity,
+- minimum information required for existence,
+- intrinsic properties versus contextual metadata.
+
+This represents a methodological shift from asking "What is this?" toward asking "What fundamentally defines this concept?"
+
+---
+
+### New Research Direction
+
+Current investigations introduced a new architectural hypothesis:
+
+Investigational objectives may be responsible for defining the specific uncertainty that an investigation exists to reduce rather than prescribing a specific reasoning representation.
+
+This hypothesis remains under active architectural review.
+
+---
+
+## Current Status
+
+Discovery 005 continues progressing through structured architectural challenge.
+
+Current dependency chain:
+
+Investigational Objective
+
+↓
+
+Investigation
+
+↓
+
+Information → Evidence
+
+↓
+
+Investigation Outcome
+
+Further architectural validation is required before any hypotheses become permanent architecture.
+
+---
+
+## Next Session
+
+Continue attacking the Investigational Objective.
+
+Primary research topics:
+
+- Minimum information required for an investigational objective.
+- Architectural responsibility of investigational objectives.
+- Investigation identity.
+- Investigation boundaries.
+- Edge cases involving branching, merging, and changing investigations.
+
+Only after Investigational Objective is sufficiently stable should Investigation be finalized.
